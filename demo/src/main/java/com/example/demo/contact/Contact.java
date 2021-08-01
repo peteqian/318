@@ -1,4 +1,4 @@
-package com.example.demo.student;
+package com.example.demo.contact;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -6,39 +6,43 @@ import java.time.Period;
 
 @Entity
 @Table
-public class Customer {
+public class Contact {
     @Id
     @SequenceGenerator(
-            name = "customer_sequence",
-            sequenceName = "customer_sequence",
+            name = "contact_sequence",
+            sequenceName = "contact_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "customer_sequence"
+            generator = "contact_sequence"
     )
     private Long id;
     private String name;
+    private String phone;
     private String email;
+    private String position;
     private LocalDate dob;
 
-    // This field no need to be a column in DB
-    // Age calculated first
     @Transient
     private Integer age;
 
-    public Customer(){}
+    public Contact(){}
 
-    public Customer(Long id, String name, String email, LocalDate dob) {
+    public Contact(Long id, String name, String phone, String email, String position, LocalDate dob) {
         this.id = id;
         this.name = name;
+        this.phone = phone;
         this.email = email;
+        this.position = position;
         this.dob = dob;
     }
 
-    public Customer(String name, String email, LocalDate dob) {
+    public Contact(String name, String phone, String email, String position, LocalDate dob) {
         this.name = name;
+        this.phone = phone;
         this.email = email;
+        this.position = position;
         this.dob = dob;
     }
 
@@ -58,12 +62,28 @@ public class Customer {
         this.name = name;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public LocalDate getDob() {
@@ -75,7 +95,7 @@ public class Customer {
     }
 
     public Integer getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
+        return age;
     }
 
     public void setAge(Integer age) {
@@ -84,10 +104,12 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Contact{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", position='" + position + '\'' +
                 ", dob=" + dob +
                 ", age=" + age +
                 '}';

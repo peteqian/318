@@ -1,4 +1,4 @@
-package com.example.demo.student;
+package com.example.demo.contact;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -6,34 +6,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/customer")                                                                                // Create API Layer
+@RequestMapping(path = "api/contact")                                                                                // Create API Layer
 
-public class CustomerController {
+public class ContactController {
 
-    private final CustomerService customerService;
+    private final ContactService contactService;
 
     @Autowired
-    public CustomerController(CustomerService customerService){
-        this.customerService = customerService;
+    public ContactController(ContactService contactService){
+        this.contactService = contactService;
     }
 
     // GET
     @GetMapping
-    public List<Customer> getCustomers(){
-        return customerService.getCustomers();
+    public List<Contact> getContacts(){
+        return contactService.getContacts();
     }
 
     // POST
     @PostMapping
-    public void registerNewCustomer(@RequestBody Customer customer){
-        customerService.addCustomer(customer);
+    public void registerNewCustomer(@RequestBody Contact contact){
+        contactService.addContact(contact);
     }
 
     // DELETE
     // Path Variable creates a /studentId within the API
     @DeleteMapping(path = "{customerId}")
     public void deleteStudent(@PathVariable("customerId") Long customerId){
-        customerService.deleteCustomer(customerId);
+        contactService.deleteContact(customerId);
     }
 
     // PUT
@@ -42,7 +42,7 @@ public class CustomerController {
             @PathVariable("customerId") long customerId,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email){
-        customerService.updateCustomer(customerId, name, email);
+        contactService.updateContact(customerId, name, email);
     }
 
 }
