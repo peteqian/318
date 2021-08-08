@@ -1,5 +1,7 @@
 package com.example.demo.contact;
 
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.ContactNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,22 +27,22 @@ public class ContactService {
 
     public void addContact(Contact contact){
 
-        System.out.println(contact);
-        Optional<Contact> contactEmail = contactRespository.findContactByEmail(contact.getEmail());
-        // SQL returns null but Boolean cannot be Null
-        // Boolean contactEmail = contactRespository.findContactByEmail(contact.getEmail());
-        if(contactEmail.isPresent()){
-        // if(contactEmail){
-            throw new IllegalStateException("Email already exists!");
+//        Optional<Contact> contactEmail = contactRespository.findContactByEmail(contact.getEmail());
+//        if(contactEmail.isPresent()){
+//            throw new BadRequestException("Email already exists!");
+//        }
+
+        Boolean contactEmail = contactRespository.selectExistsEmail(contact.getEmail());
+        if(contactEmail){
+            throw new BadRequestException("Email " + contact.getEmail() + " already exists!");
         }
         contactRespository.save(contact);
-
     }
 
     public void deleteContact(Long contactId) {
         boolean exists = contactRespository.existsById(contactId);
         if(!exists){
-            throw new IllegalStateException("Contact with id: " + contactId + " does not exist!");
+            throw new ContactNotFoundException("Contact with id: " + contactId + " does not exist!");
         }
         contactRespository.deleteById(contactId);
     }
@@ -50,7 +52,7 @@ public class ContactService {
     public void updateContact(long contactId, String name, String email) {
         Contact contact = contactRespository.findById(contactId)
                 .orElseThrow(
-                        () -> new IllegalStateException("Customer with id " + contactId + " does not exist!")
+                        () -> new ContactNotFoundException("Customer with id " + contactId + " does not exist!")
                 );
 
         if (name != null && name.length() > 0 && !Objects.equals(contact.getName(), name)){
@@ -59,10 +61,12 @@ public class ContactService {
 
         if(email != null && email.length() > 0 && !Objects.equals(contact.getEmail(), email)){
             Optional<Contact> contactEmail = contactRespository.findContactByEmail(email);
-            // boolean contactEmail = contactRespository.findContactByEmail(contact.getEmail());
+//             boolean contactEmail = contactRespository.findContactByEmail(contact.getEmail());
+//             if(contactEmail){
+//                throw new ContactNotFoundException("Email taken!");
+//            }
             if(contactEmail.isPresent()){
-            // if(contactEmail){
-                throw new IllegalStateException("Email taken!");
+                throw new ContactNotFoundException("Email taken!");
             }
             contact.setEmail(email);
         }

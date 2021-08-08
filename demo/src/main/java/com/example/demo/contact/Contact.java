@@ -22,28 +22,25 @@ public class Contact {
     private String phone;
     private String email;
     private String position;
-    private LocalDate dob;
 
     @Transient
     private Integer age;
 
     public Contact(){}
 
-    public Contact(Long id, String name, String phone, String email, String position, LocalDate dob) {
+    public Contact(Long id, String name, String phone, String email, String position) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.position = position;
-        this.dob = dob;
     }
 
-    public Contact(String name, String phone, String email, String position, LocalDate dob) {
+    public Contact(String name, String phone, String email, String position) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.position = position;
-        this.dob = dob;
     }
 
     public Long getId() {
@@ -86,21 +83,6 @@ public class Contact {
         this.position = position;
     }
 
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     @Override
     public String toString() {
@@ -109,9 +91,7 @@ public class Contact {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", position='" + position + '\'' +
-                ", dob=" + dob +
-                ", age=" + age +
+                ", position='" + position +
                 '}';
     }
 }

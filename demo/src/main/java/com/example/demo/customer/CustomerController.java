@@ -1,10 +1,11 @@
 package com.example.demo.customer;
 
-import com.example.demo.contact.Contact;
+import com.example.demo.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/customer")
@@ -23,6 +24,12 @@ public class CustomerController {
     public List<Customer> getCustomers(){
         return customerService.getCustomers();
     }
+
+    @GetMapping(path = "/get/{customerCompanyName}")
+    public Optional<Customer> getCustomer(@PathVariable("customerCompanyName") String customerCompanyName){
+        return customerService.getCustomer(customerCompanyName);
+    }
+
 
     @PostMapping
     public void registerNewCustomer(@RequestBody Customer customer){

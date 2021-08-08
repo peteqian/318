@@ -17,16 +17,14 @@ public class ContactConfig {
                         "Peter",
                         "+61-412-123-456",
                         "peter@gmail.com",
-                        "positionOne",
-                        LocalDate.of(1995,4,28)
+                        "positionOne"
             );
 
             Contact pineapple = new Contact(
                     "Pineapple",
                     "+61-412-123-456",
                     "pineapple@gmail.com",
-                    "positionTwo",
-                    LocalDate.of(1996,4,28)
+                    "positionTwo"
             );
 
             respository.saveAll(List.of(peter, pineapple));

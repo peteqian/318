@@ -1,6 +1,8 @@
 package com.example.demo.customer;
 
 import com.example.demo.contact.Contact;
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,30 +24,41 @@ public class CustomerService {
         return customerRespository.findAll();
     }
 
+    public Optional<Customer> getCustomer(String companyName){
+        return customerRespository.findCustomerByCompanyName(companyName);
+    }
+
     public void addCustomer(Customer customer){
-        System.out.println(customer);
-        Optional<Customer> customerByCompanyName
-                = customerRespository.findCustomerByCompanyName(
-                        customer.getCompanyName()
-        );
-        if(customerByCompanyName.isPresent()){
-            throw new IllegalStateException("Company Name already exists!");
+//        Optional<Customer> customerByCompanyName
+//                = customerRespository.findCustomerByCompanyName(
+//                        customer.getCompanyName()
+//        );
+//        if(customerByCompanyName.isPresent()){
+//            throw new BadRequestException("Company Name already exists!");
+//        }
+        boolean customerByCompanyName
+                = customerRespository.selectExistingCompany(customer.getCompanyName());
+        if(customerByCompanyName){
+            throw new BadRequestException("Company Name: " + customer.getCompanyName() + " already exists!");
         }
         customerRespository.save(customer);
     }
 
-    public void deleteCustomer(Long customerCompanyName){
-        boolean exists = customerRespository.existsById(customerCompanyName);
+    public void deleteCustomer(Long customerId){
+
+        boolean exists = customerRespository.existsById(customerId);
         if(!exists){
-            throw new IllegalStateException("Company " + customerCompanyName + " does not exist!");
+            throw new CustomerNotFoundException("Company with id " + customerId + " does not exist!");
         }
+        customerRespository.deleteById(customerId);
+
     }
 
     @Transactional
     public void updateCustomer(long customerId, String name, String address, String country) {
         Customer customer = customerRespository.findById(customerId)
                 .orElseThrow(
-                        () -> new IllegalStateException("Customer with id " + customerId + " does not exist!")
+                        () -> new CustomerNotFoundException("Customer with id " + customerId + " does not exist!")
                 );
 
         if (name != null && name.length() > 0 && !Objects.equals(customer.getCompanyName(), name)){
