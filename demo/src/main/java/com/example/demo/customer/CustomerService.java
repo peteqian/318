@@ -1,6 +1,5 @@
 package com.example.demo.customer;
 
-import com.example.demo.contact.Contact;
 import com.example.demo.exception.BadRequestException;
 import com.example.demo.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
