@@ -30,14 +30,13 @@ public class CustomerController {
         return customerService.getCustomer(customerCompanyName);
     }
 
-
     @PostMapping
     public void registerNewCustomer(@RequestBody Customer customer){
         customerService.addCustomer(customer);
     }
 
     @DeleteMapping(path = "{customerId}")
-    public void deleteStudent(@PathVariable("customerId") Long customerId){
+    public void deleteCustomer(@PathVariable("customerId") Long customerId){
         customerService.deleteCustomer(customerId);
     }
 
