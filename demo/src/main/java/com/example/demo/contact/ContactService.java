@@ -27,7 +27,10 @@ public class ContactService {
 
         System.out.println(contact);
         Optional<Contact> contactEmail = contactRespository.findContactByEmail(contact.getEmail());
+        // SQL returns null but Boolean cannot be Null
+        // Boolean contactEmail = contactRespository.findContactByEmail(contact.getEmail());
         if(contactEmail.isPresent()){
+        // if(contactEmail){
             throw new IllegalStateException("Email already exists!");
         }
         contactRespository.save(contact);
@@ -55,8 +58,10 @@ public class ContactService {
         }
 
         if(email != null && email.length() > 0 && !Objects.equals(contact.getEmail(), email)){
-            Optional<Contact> customerOptional = contactRespository.findContactByEmail(email);
-            if(customerOptional.isPresent()){
+            Optional<Contact> contactEmail = contactRespository.findContactByEmail(email);
+            // boolean contactEmail = contactRespository.findContactByEmail(contact.getEmail());
+            if(contactEmail.isPresent()){
+            // if(contactEmail){
                 throw new IllegalStateException("Email taken!");
             }
             contact.setEmail(email);
