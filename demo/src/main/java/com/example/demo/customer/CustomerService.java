@@ -24,6 +24,10 @@ public class CustomerService {
         return customerRespository.findAll();
     }
 
+    public Optional<Customer> getCustomerById(long id){
+        return customerRespository.findById(id);
+    }
+
     public Optional<Customer> getCustomer(String companyName){
         return customerRespository.findCustomerByCompanyName(companyName);
     }
