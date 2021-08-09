@@ -81,4 +81,37 @@ public class ContactService {
         }
         contact.setEmail(email);
     }
+
+    @Transactional
+    public void updateContactByRaw(Contact contact){
+        Contact resposContact = contactRespository.findById(contact.getId())
+                .orElseThrow(
+                        () -> new ContactNotFoundException("Customer with id " + contact.getId() + " does not exist!")
+                );
+        if (contact.getName() != null && contact.getName().length() > 0 && !Objects.equals(resposContact.getName(), contact.getName())){
+            resposContact.setName(contact.getName());
+        }
+        boolean emailExists = contactRespository.selectExistsEmail(contact.getEmail());
+        System.out.println("Email you're trying to insert: " + contact.getEmail());                                               // Debug
+        System.out.println("Email of the current person you're inserting: " + resposContact.getEmail());                      // Debug
+        System.out.println("Looking for any users with the same email: " + emailExists);                                // Debug
+        if(emailExists){
+            throw new BadRequestException("Email '" + contact.getEmail() + "' is already taken!");
+        }
+
+        if (contact.getEmail() != null && contact.getEmail().length() > 0){
+            System.out.println("Hello");
+            System.out.println(resposContact.getEmail());
+            System.out.println(contact.getEmail());
+            resposContact.setEmail(contact.getEmail());
+        }
+
+        if (contact.getPhone() != null && contact.getPhone().length() > 0){
+            resposContact.setPhone(contact.getPhone());
+        }
+
+        if (contact.getPosition() != null && contact.getPosition().length() > 0){
+            resposContact.setPosition(contact.getPosition());
+        }
+    }
 }

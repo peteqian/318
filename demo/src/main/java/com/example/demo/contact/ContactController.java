@@ -44,13 +44,18 @@ public class ContactController {
 
     // PUT
     @PutMapping(path = "{customerId}")
-    public void updateCustomer(
+    public void updateContact(
             @PathVariable("customerId") long customerId,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String phone,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) String position){
         contactService.updateContact(customerId, name, phone, email, position);
+    }
+
+    @PutMapping(path = "/putRaw/{customerId}")
+    public void updateContact(@RequestBody Contact contact){
+        contactService.updateContactByRaw(contact);
     }
 
 }
