@@ -1,6 +1,7 @@
 package com.example.demo.customer;
 
 import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.ContactNotFoundException;
 import com.example.demo.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,14 +55,18 @@ public class CustomerService {
     }
 
     @Transactional
-    public void updateCustomer(long customerId, String name, String address, String country) {
+    public void updateCustomer(long customerId, String companyName, String address, String country) {
         Customer customer = customerRespository.findById(customerId)
                 .orElseThrow(
                         () -> new CustomerNotFoundException("Customer with id " + customerId + " does not exist!")
                 );
 
-        if (name != null && name.length() > 0 && !Objects.equals(customer.getCompanyName(), name)){
-            customer.setCompanyName(name);
+        if (companyName != null && companyName.length() > 0 && !Objects.equals(customer.getCompanyName(), companyName)){
+            boolean companyExists = customerRespository.selectExistingCompany(companyName);
+            if(companyExists){
+                throw new BadRequestException("Company Name: '" + companyName + "' is already taken!");
+            }
+            customer.setCompanyName(companyName);
         }
 
         if(address != null && address.length() > 0 ){

@@ -14,11 +14,10 @@ public interface ContactRespository
     @Query("SELECT s FROM Contact s WHERE s.email = ?1")
     Optional<Contact> findContactByEmail(String email);
 
-    @Query("" +
-            "SELECT CASE WHEN COUNT(s) > 0 THEN " +
+    @Query("" + "SELECT CASE WHEN COUNT(email) > 0 THEN " +
             "TRUE ELSE FALSE END " +
             "FROM Contact s " +
-            "WHERE s.email = ?1"
+            "WHERE lower(s.email) = ?1"
     )
     Boolean selectExistsEmail(String email);
 }

@@ -25,6 +25,10 @@ public class ContactService {
         return contactRespository.findAll();
     }
 
+    public Optional<Contact> getContact(Long contactId){
+        return contactRespository.findById(contactId);
+    }
+
     public void addContact(Contact contact){
 
 //        Optional<Contact> contactEmail = contactRespository.findContactByEmail(contact.getEmail());
@@ -49,7 +53,7 @@ public class ContactService {
 
     // Moves entity into managed state
     @Transactional
-    public void updateContact(long contactId, String name, String email) {
+    public void updateContact(long contactId, String name, String phone, String email, String position) {
         Contact contact = contactRespository.findById(contactId)
                 .orElseThrow(
                         () -> new ContactNotFoundException("Customer with id " + contactId + " does not exist!")
@@ -59,16 +63,22 @@ public class ContactService {
             contact.setName(name);
         }
 
-        if(email != null && email.length() > 0 && !Objects.equals(contact.getEmail(), email)){
-            Optional<Contact> contactEmail = contactRespository.findContactByEmail(email);
-//             boolean contactEmail = contactRespository.findContactByEmail(contact.getEmail());
-//             if(contactEmail){
-//                throw new ContactNotFoundException("Email taken!");
+//        if(email != null && email.length() > 0 && !Objects.equals(contact.getEmail(), email)){
+//            Optional<Contact> contactEmail = contactRespository.findContactByEmail(email);
+//            if(contactEmail.isPresent()){
+//                throw new ContactNotFoundException("Email '" + email + "' is already taken!");
 //            }
-            if(contactEmail.isPresent()){
-                throw new ContactNotFoundException("Email taken!");
-            }
-            contact.setEmail(email);
+        boolean emailExists = contactRespository.selectExistsEmail(email);
+        System.out.println("Email you're trying to insert: " + email);                                                  // Debug
+        System.out.println("Email of the current person you're inserting: " + contact.getEmail());                      // Debug
+        System.out.println("Looking for any users with the same email: " + emailExists);                                // Debug
+        if(contact.getEmail().equals(email)){
+            throw new BadRequestException("This is the same email.");
         }
+
+        if(emailExists){
+            throw new BadRequestException("Email '" + email + "' is already taken!");
+        }
+        contact.setEmail(email);
     }
 }

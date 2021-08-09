@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/contact")                                                                                // Create API Layer
@@ -23,6 +24,11 @@ public class ContactController {
         return contactService.getContacts();
     }
 
+    // GET One Contact
+    @GetMapping(path = "/get/{contactId}")
+    public Optional<Contact> getContact(@PathVariable("contactId") Long contactId){
+        return contactService.getContact(contactId);
+    }
     // POST
     @PostMapping
     public void registerNewCustomer(@RequestBody Contact contact){
@@ -41,8 +47,10 @@ public class ContactController {
     public void updateCustomer(
             @PathVariable("customerId") long customerId,
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email){
-        contactService.updateContact(customerId, name, email);
+            @RequestParam(required = false) String phone,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String position){
+        contactService.updateContact(customerId, name, phone, email, position);
     }
 
 }

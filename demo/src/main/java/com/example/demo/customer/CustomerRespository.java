@@ -13,7 +13,7 @@ public interface CustomerRespository
     Optional<Customer> findCustomerByCompanyName(String companyName);
 
     @Query("" +
-            "SELECT CASE WHEN COUNT(s) > 0 THEN " +
+            "SELECT CASE WHEN COUNT(companyName) > 0 THEN " +
             "TRUE ELSE FALSE END " +
             "FROM Customer s " +
             "WHERE s.companyName = ?1"

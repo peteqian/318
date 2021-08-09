@@ -43,9 +43,9 @@ public class CustomerController {
     @PutMapping(path = "{customerId}")
     public void updateCustomer(
             @PathVariable("customerId") long customerId,
-            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String companyName,
             @RequestParam(required = false) String address,
             @RequestParam(required = false) String country){
-        customerService.updateCustomer(customerId, name, address, country);
+        customerService.updateCustomer(customerId, companyName, address, country);
     }
 }
