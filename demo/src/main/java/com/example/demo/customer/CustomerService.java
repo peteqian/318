@@ -81,5 +81,28 @@ public class CustomerService {
             customer.setCountry(country);
         }
     }
+    @Transactional
+    public void updateCustomerByRaw(Customer customer) {
+        Customer reposCustomer = customerRespository.findById(customer.getId())
+                .orElseThrow(
+                        () -> new CustomerNotFoundException("Customer with id " + customer.getId() + " does not exist!")
+                );
 
+        if (customer.getCompanyName() != null && customer.getCompanyName().length() > 0){
+
+            boolean companyExists = customerRespository.selectExistingCompany(customer.getCompanyName());
+            if(companyExists){
+                throw new BadRequestException("Company Name: '" + customer.getCompanyName() + "' is already taken!");
+            }
+            reposCustomer.setCompanyName(customer.getCompanyName());
+        }
+
+        if(customer.getAddress() != null && customer.getAddress().length() > 0 ){
+            reposCustomer.setAddress(customer.getAddress());
+        }
+
+        if(customer.getCountry() != null && customer.getCountry().length() > 0 ){
+            reposCustomer.setCountry(customer.getCountry());
+        }
+    }
 }
