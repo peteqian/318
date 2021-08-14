@@ -1,6 +1,7 @@
 package com.example.demo.contact;
 
 import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.ContactNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,8 +36,9 @@ class ContactServiceTest {
     }
 
     @Test
-    @Disabled
     void getContacts() {
+        underTest.getContacts();
+        verify(contactRespository).findAll();
     }
 
     @Test
@@ -76,16 +80,39 @@ class ContactServiceTest {
 
         assertThatThrownBy(() ->underTest.addContact(cake))
                 .isInstanceOf(BadRequestException.class)
-                .hasMessageContaining("Email already exists!");
+                .hasMessageContaining("Email " + cake.getEmail() + " already exists!");
     }
 
     @Test
-    @Disabled
     void deleteContact() {
+        long temp_id = 5;
+        Contact tempContact = new Contact(
+                temp_id,
+                "TemporaryName",
+                "+61-412-123-456",
+                "temp@gmail.com",
+                "tempPosition"
+        );
+        underTest.addContact(tempContact);
+        given(contactRespository.existsById(temp_id))
+                .willReturn(true);
+        underTest.deleteContact(temp_id);
+        verify(contactRespository).deleteById(temp_id);
     }
 
     @Test
-    @Disabled
-    void updateContact() {
+    void will_throw_when_delete_contact_not_found(){
+        // Given input
+        long temp_id = 5;
+
+        given(contactRespository.existsById(temp_id))
+                .willReturn(false);
+
+        // Try
+        assertThatThrownBy(() -> underTest.deleteContact(temp_id))
+                .isInstanceOf(ContactNotFoundException.class)
+                .hasMessageContaining("Contact with id: " + temp_id + " does not exist!");
+
+        verify(contactRespository, never()).deleteById(any());
     }
 }

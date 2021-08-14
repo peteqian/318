@@ -1,7 +1,5 @@
 package com.example.demo.customer;
 
-import com.example.demo.contact.Contact;
-import com.example.demo.customer.CustomerRespository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DataJpaTest
 public class CustomerRespositoryTest {
 
     @Autowired

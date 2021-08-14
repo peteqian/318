@@ -98,7 +98,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    void will_throw_when_delete_student_not_found(){
+    void will_throw_when_delete_customer_not_found(){
         // Given input
         long temp_id = 5;
 
