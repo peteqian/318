@@ -69,17 +69,23 @@ public class ContactService {
 //                throw new ContactNotFoundException("Email '" + email + "' is already taken!");
 //            }
         boolean emailExists = contactRespository.selectExistsEmail(email);
-        System.out.println("Email you're trying to insert: " + email);                                                  // Debug
-        System.out.println("Email of the current person you're inserting: " + contact.getEmail());                      // Debug
-        System.out.println("Looking for any users with the same email: " + emailExists);                                // Debug
-        if(contact.getEmail().equals(email)){
-            throw new BadRequestException("This is the same email.");
-        }
 
         if(emailExists){
-            throw new BadRequestException("Email '" + email + "' is already taken!");
+            throw new BadRequestException("Email '" + contact.getEmail() + "' is already taken!");
         }
-        contact.setEmail(email);
+
+        if (contact.getEmail() != null && contact.getEmail().length() > 0){
+            contact.setEmail(contact.getEmail());
+        }
+
+        if (contact.getPhone() != null && contact.getPhone().length() > 0){
+            contact.setPhone(contact.getPhone());
+        }
+
+        if (contact.getPosition() != null && contact.getPosition().length() > 0){
+            contact.setPosition(contact.getPosition());
+        }
+
     }
 
     @Transactional
@@ -100,9 +106,6 @@ public class ContactService {
         }
 
         if (contact.getEmail() != null && contact.getEmail().length() > 0){
-            System.out.println("Hello");
-            System.out.println(resposContact.getEmail());
-            System.out.println(contact.getEmail());
             resposContact.setEmail(contact.getEmail());
         }
 
