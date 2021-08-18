@@ -30,7 +30,7 @@ public class CustomerController {
         return customerService.getCustomerById(Id);
     }
 
-    @GetMapping(path = "/get/{customerCompanyName}")
+    @GetMapping(path = "/get/companyName={customerCompanyName}")
     public Optional<Customer> getCustomer(@PathVariable("customerCompanyName") String customerCompanyName){
         return customerService.getCustomer(customerCompanyName);
     }
