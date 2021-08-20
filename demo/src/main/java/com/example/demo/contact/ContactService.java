@@ -59,31 +59,26 @@ public class ContactService {
                         () -> new ContactNotFoundException("Customer with id " + contactId + " does not exist!")
                 );
 
-        if (name != null && name.length() > 0 && !Objects.equals(contact.getName(), name)){
+        if (name != null && name.length() > 0){
             contact.setName(name);
         }
 
-//        if(email != null && email.length() > 0 && !Objects.equals(contact.getEmail(), email)){
-//            Optional<Contact> contactEmail = contactRespository.findContactByEmail(email);
-//            if(contactEmail.isPresent()){
-//                throw new ContactNotFoundException("Email '" + email + "' is already taken!");
-//            }
         boolean emailExists = contactRespository.selectExistsEmail(email);
 
         if(emailExists){
-            throw new BadRequestException("Email '" + contact.getEmail() + "' is already taken!");
+            throw new BadRequestException("Email '" + email + "' is already taken!");
         }
 
-        if (contact.getEmail() != null && contact.getEmail().length() > 0){
-            contact.setEmail(contact.getEmail());
+        if (email != null && email.length() > 0){
+            contact.setEmail(email);
         }
 
-        if (contact.getPhone() != null && contact.getPhone().length() > 0){
-            contact.setPhone(contact.getPhone());
+        if (phone != null && phone.length() > 0){
+            contact.setPhone(phone);
         }
 
-        if (contact.getPosition() != null && contact.getPosition().length() > 0){
-            contact.setPosition(contact.getPosition());
+        if (position != null && position.length() > 0){
+            contact.setPosition(position);
         }
 
     }
