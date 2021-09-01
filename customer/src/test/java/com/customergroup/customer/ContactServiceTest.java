@@ -1,4 +1,4 @@
-package com.customergroup.contact;
+package com.customergroup.customer;
 
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.ContactNotFoundException;
@@ -22,11 +22,12 @@ class ContactServiceTest {
 
     @Mock
     private ContactRespository contactRespository;
-    private ContactService underTest;
+    private CustomerRespository customerRespository;
+    private CustomerService underTest;
 
     @BeforeEach
     void setUp() {
-        underTest = new ContactService(contactRespository);
+        underTest = new CustomerService(customerRespository, contactRespository);
     }
 
     @Test

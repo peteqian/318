@@ -27,11 +27,12 @@ public class CustomerServiceTest {
 
     @Mock
     private CustomerRespository customerRespository;
+    private ContactRespository contactRespository;
     private CustomerService underTest;
 
     @BeforeEach
     void setUp(){
-        underTest = new CustomerService(customerRespository);
+        underTest = new CustomerService(customerRespository, contactRespository);
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.customergroup.contact;
+package com.customergroup.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

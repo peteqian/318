@@ -1,4 +1,4 @@
-package com.customergroup.contact;
+package com.customergroup.customer;
 
 import javax.persistence.*;
 import java.time.LocalDate;
