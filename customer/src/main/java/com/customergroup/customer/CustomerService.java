@@ -111,7 +111,11 @@ public class CustomerService {
         return contactRespository.findAll();
     }
 
+
     public Optional<Contact> getContact(Long contactId){
+        /**
+         * Returns a list of Contacts
+         */
         return contactRespository.findById(contactId);
     }
 
