@@ -19,7 +19,7 @@ import java.util.List;
 public class CustomerConfig {
 
     @Bean
-    CommandLineRunner customerLineRunner(CustomerRespository respository,
+    CommandLineRunner customerLineRunner(CustomerRespository customerRespository,
                                          ContactRespository contactRespository){
         return args -> {
             Customer apple = new Customer(
@@ -27,7 +27,7 @@ public class CustomerConfig {
                     "Somewhere in FreedomLand",
                     "FreedomLand"
             );
-            respository.saveAll(List.of(apple));
+            customerRespository.saveAll(List.of(apple));
 
             Contact peter = new Contact(
                     "Peter",
