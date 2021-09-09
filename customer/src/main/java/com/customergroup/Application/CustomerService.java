@@ -1,5 +1,9 @@
-package com.customergroup.customer;
+package com.customergroup.Application;
 
+import com.customergroup.Application.Domain.Contact;
+import com.customergroup.Data.ContactRespository;
+import com.customergroup.Application.Domain.Customer;
+import com.customergroup.Data.CustomerRespository;
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.ContactNotFoundException;
 import com.customergroup.exception.CustomerNotFoundException;
@@ -7,10 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

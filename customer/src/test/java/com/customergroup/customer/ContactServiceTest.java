@@ -1,9 +1,12 @@
 package com.customergroup.customer;
 
+import com.customergroup.Application.CustomerService;
+import com.customergroup.Application.Domain.Contact;
+import com.customergroup.Data.ContactRespository;
+import com.customergroup.Data.CustomerRespository;
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.ContactNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

@@ -1,5 +1,8 @@
-package com.customergroup.customer;
+package com.customergroup.API;
 
+import com.customergroup.Application.Domain.Contact;
+import com.customergroup.Application.Domain.Customer;
+import com.customergroup.Application.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

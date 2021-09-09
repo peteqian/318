@@ -1,4 +1,4 @@
-package com.customergroup.customer;
+package com.customergroup.Application.Domain;
 
 import javax.persistence.*;
 

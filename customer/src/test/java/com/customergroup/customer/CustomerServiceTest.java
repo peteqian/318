@@ -1,18 +1,17 @@
 package com.customergroup.customer;
 
+import com.customergroup.Application.CustomerService;
+import com.customergroup.Application.Domain.Customer;
+import com.customergroup.Data.ContactRespository;
+import com.customergroup.Data.CustomerRespository;
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.CustomerNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import javax.swing.text.html.Option;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
