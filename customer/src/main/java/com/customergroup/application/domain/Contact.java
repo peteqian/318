@@ -1,8 +1,6 @@
-package com.customergroup.Application.Domain;
+package com.customergroup.application.domain;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.Period;
 
 @Entity
 @Table
@@ -22,9 +20,10 @@ public class Contact {
     private String phone;
     private String email;
     private String position;
-
-    @Transient
-    private Integer age;
+    
+    // One-to-one relationship
+    @OneToOne(mappedBy = "contact")
+    private  Customer customer;
 
     public Contact(){}
 
@@ -83,15 +82,12 @@ public class Contact {
         this.position = position;
     }
 
-
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", position='" + position +
-                '}';
+    public Customer getCustomer(){
+        return customer;
     }
+
+    public void setCustomer(Customer customer){
+        this.customer = customer;
+    }
+
 }

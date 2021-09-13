@@ -1,9 +1,9 @@
 package com.customergroup.customer;
 
-import com.customergroup.Application.CustomerService;
-import com.customergroup.Application.Domain.Customer;
-import com.customergroup.Data.ContactRespository;
-import com.customergroup.Data.CustomerRespository;
+import com.customergroup.application.service.CustomerService;
+import com.customergroup.application.domain.Customer;
+import com.customergroup.data.ContactRespository;
+import com.customergroup.data.CustomerRespository;
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.CustomerNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,12 +26,11 @@ public class CustomerServiceTest {
 
     @Mock
     private CustomerRespository customerRespository;
-    private ContactRespository contactRespository;
     private CustomerService underTest;
 
     @BeforeEach
     void setUp(){
-        underTest = new CustomerService(customerRespository, contactRespository);
+        underTest = new CustomerService(customerRespository);
     }
 
     @Test

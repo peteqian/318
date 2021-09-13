@@ -1,4 +1,4 @@
-package com.customergroup.Application.Domain;
+package com.customergroup.application.domain;
 
 import javax.persistence.*;
 
@@ -20,6 +20,11 @@ public class Customer {
     private String companyName;
     private String address;
     private String country;
+
+    // Build a one-to-onne relationship between Customer and Contact.
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
 
     private Customer() {}
 
@@ -68,13 +73,12 @@ public class Customer {
         this.country = country;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", companyName='" + companyName + '\'' +
-                ", address='" + address + '\'' +
-                ", Country='" + country + '\'' +
-                '}';
+    public Contact getContact(){
+        return contact;
     }
+
+    public void setContact(Contact contact){
+        this.contact = contact;
+    }
+    
 }

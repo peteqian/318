@@ -1,6 +1,6 @@
-package com.customergroup.Data;
+package com.customergroup.data;
 
-import com.customergroup.Application.Domain.Customer;
+import com.customergroup.application.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

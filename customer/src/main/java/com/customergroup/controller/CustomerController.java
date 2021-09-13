@@ -1,8 +1,9 @@
-package com.customergroup.API;
+package com.customergroup.controller;
 
-import com.customergroup.Application.Domain.Contact;
-import com.customergroup.Application.Domain.Customer;
-import com.customergroup.Application.CustomerService;
+import com.customergroup.application.domain.Contact;
+import com.customergroup.application.domain.Customer;
+import com.customergroup.application.service.ContactService;
+import com.customergroup.application.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +17,13 @@ import java.util.Optional;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final ContactService contactService;
 
     @Autowired
-    public CustomerController(CustomerService customerService){
+    public CustomerController(CustomerService customerService,
+                              ContactService contactService){
         this.customerService = customerService;
+        this.contactService = contactService;
     }
 
     @GetMapping(path = "/customer")
@@ -64,25 +68,25 @@ public class CustomerController {
     // GET
     @GetMapping(path = "/contact")
     public List<Contact> getContacts(){
-        return customerService.getContacts();
+        return contactService.getContacts();
     }
 
     // GET One Contact
     @GetMapping(path = "/contact/get/{contactId}")
     public Optional<Contact> getContact(@PathVariable("contactId") Long contactId){
-        return customerService.getContact(contactId);
+        return contactService.getContact(contactId);
     }
     // POST
     @PostMapping(path = "/contact")
     public void registerNewCustomer(@RequestBody Contact contact){
-        customerService.addContact(contact);
+        contactService.addContact(contact);
     }
 
     // DELETE
     // Path Variable creates a /studentId within the API
     @DeleteMapping(path = "/contact/{customerId}")
     public void deleteStudent(@PathVariable("customerId") Long customerId){
-        customerService.deleteContact(customerId);
+        contactService.deleteContact(customerId);
     }
 
     // PUT
@@ -93,12 +97,13 @@ public class CustomerController {
             @RequestParam(required = false) String phone,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) String position){
-        customerService.updateContact(customerId, name, phone, email, position);
+        contactService.updateContact(customerId, name, phone, email, position);
     }
 
     @PutMapping(path = "/contact/putRaw/{customerId}")
     public void updateContact(@RequestBody Contact contact){
-        customerService.updateContactByRaw(contact);
+        contactService.updateContactByRaw(contact);
     }
+
 
 }

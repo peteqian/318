@@ -1,7 +1,7 @@
 package com.customergroup.customer;
 
-import com.customergroup.Application.Domain.Customer;
-import com.customergroup.Data.CustomerRespository;
+import com.customergroup.application.domain.Customer;
+import com.customergroup.data.CustomerRespository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
