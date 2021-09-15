@@ -14,7 +14,7 @@
     <bytecodeTargetLevel>
       <module name="customer" target="9" />
       <module name="order" target="1.8" />
-      <module name="product" target="1.8" />
+      <module name="product" target="9" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

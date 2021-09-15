@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/")
-
 // API Layer
 public class CustomerController {
 
@@ -105,5 +104,11 @@ public class CustomerController {
         contactService.updateContactByRaw(contact);
     }
 
-
+    //PUT
+    @PutMapping(path = "/customer/{id}/contact/{contactId}")
+    public void updateCustomerContactDetails(@PathVariable Long id,
+                                          @PathVariable Long contactId){
+        customerService.updateCustomerContactDetails(id, contactId);
+    }
 }
+

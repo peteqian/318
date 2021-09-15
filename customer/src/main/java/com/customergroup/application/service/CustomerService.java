@@ -5,6 +5,7 @@ import com.customergroup.data.ContactRespository;
 import com.customergroup.application.domain.Customer;
 import com.customergroup.data.CustomerRespository;
 import com.customergroup.exception.BadRequestException;
+import com.customergroup.exception.ContactFailedException;
 import com.customergroup.exception.ContactNotFoundException;
 import com.customergroup.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,13 @@ import java.util.Optional;
 public class CustomerService {
 
     private final CustomerRespository customerRespository;
+    private final ContactRespository contactRespository;
 
     @Autowired
-    public CustomerService(CustomerRespository customerRespository){
+    public CustomerService(CustomerRespository customerRespository,
+                           ContactRespository contactRespository){
         this.customerRespository = customerRespository;
+        this.contactRespository = contactRespository;
     }
 
     public List<Customer> getCustomers(){
@@ -87,7 +91,6 @@ public class CustomerService {
                 );
 
         if (customer.getCompanyName() != null && customer.getCompanyName().length() > 0){
-
             boolean companyExists = customerRespository.selectExistingCompany(customer.getCompanyName());
             if(companyExists){
                 throw new BadRequestException("Company Name: '" + customer.getCompanyName() + "' is already taken!");
@@ -104,4 +107,25 @@ public class CustomerService {
         }
     }
 
+    @Transactional
+    public void updateCustomerContactDetails(long customerId, long contactId){
+        Customer customer = customerRespository.findById(customerId).orElseThrow(
+                () -> new CustomerNotFoundException("Customer with id " + customerId + " does not exist!")
+        );
+        Contact contact = contactRespository.findById(contactId).orElseThrow(
+                () -> new ContactNotFoundException("Customer with id " + contactId + " does not exist!")
+        );
+        if(contact.getAssigned() != -1) throw new ContactFailedException(contactId);
+        contact.setAssigned(customerId);
+        customer.setContact(contact);
+    }
+
+    @Transactional
+    public String[] getCustomerDetails(long customerId){
+        Customer customer = customerRespository.findById(customerId).orElseThrow(
+                () -> new CustomerNotFoundException("Customer with id " + customerId + " does not exist!")
+        );
+        String[] details = {customer.getAddress(), customer.getContact().getPhone()};
+        return details;
+    }
 }

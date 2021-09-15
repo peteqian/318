@@ -1,4 +1,4 @@
-package com.customergroup.customer;
+package com.customergroup.config;
 
 import com.customergroup.application.domain.Contact;
 import com.customergroup.data.ContactRespository;

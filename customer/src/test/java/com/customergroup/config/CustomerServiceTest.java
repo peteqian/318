@@ -1,9 +1,9 @@
-package com.customergroup.customer;
+package com.customergroup.config;
 
 import com.customergroup.application.service.CustomerService;
+import com.customergroup.data.CustomerRespository;
 import com.customergroup.application.domain.Customer;
 import com.customergroup.data.ContactRespository;
-import com.customergroup.data.CustomerRespository;
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.CustomerNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,11 +26,12 @@ public class CustomerServiceTest {
 
     @Mock
     private CustomerRespository customerRespository;
+    private ContactRespository contactRespository;
     private CustomerService underTest;
 
     @BeforeEach
     void setUp(){
-        underTest = new CustomerService(customerRespository);
+        underTest = new CustomerService(customerRespository, contactRespository);
     }
 
     @Test
@@ -48,11 +49,9 @@ public class CustomerServiceTest {
         );
 
         underTest.addCustomer(customerOne);
-        ArgumentCaptor<Customer> customerArgumentCaptor
-                = ArgumentCaptor.forClass(Customer.class);
+        ArgumentCaptor<Customer> customerArgumentCaptor = ArgumentCaptor.forClass(Customer.class);
 
-        verify(customerRespository)
-                .save(customerArgumentCaptor.capture());
+        verify(customerRespository).save(customerArgumentCaptor.capture());
         Customer capturedCustomer = customerArgumentCaptor.getValue();
         assertThat(capturedCustomer).isEqualTo(customerOne);
     }

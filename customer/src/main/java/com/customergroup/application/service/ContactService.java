@@ -51,10 +51,9 @@ public class ContactService {
     // Moves entity into managed state
     @Transactional
     public void updateContact(long contactId, String name, String phone, String email, String position) {
-        Contact contact = contactRespository.findById(contactId)
-                .orElseThrow(
-                        () -> new ContactNotFoundException("Customer with id " + contactId + " does not exist!")
-                );
+        Contact contact = contactRespository.findById(contactId).orElseThrow(
+                () -> new ContactNotFoundException("Customer with id " + contactId + " does not exist!")
+        );
 
         if (name != null && name.length() > 0){
             contact.setName(name);
@@ -109,5 +108,6 @@ public class ContactService {
             resposContact.setPosition(contact.getPosition());
         }
     }
+
 
 }

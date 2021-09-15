@@ -1,4 +1,4 @@
-package com.customergroup.customer;
+package com.customergroup.config;
 
 import com.customergroup.application.domain.Contact;
 import com.customergroup.application.domain.Customer;
@@ -25,9 +25,16 @@ public class CustomerConfig {
             Customer apple = new Customer(
                     "Apple",
                     "Somewhere in FreedomLand",
-                    "FreedomLand"
+                    "U.S.A"
             );
-            customerRespository.saveAll(List.of(apple));
+
+            Customer tesla  = new Customer(
+                    "Tesla",
+                    "3500 Deer Creek Road " +
+                            "Palo Alto, CA 94304",
+                    "U.S.A"
+            );
+            customerRespository.saveAll(List.of(apple, tesla));
 
             Contact peter = new Contact(
                     "Peter",

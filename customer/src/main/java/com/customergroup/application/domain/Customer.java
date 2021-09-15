@@ -1,5 +1,7 @@
 package com.customergroup.application.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,9 @@ public class Customer {
     // Build a one-to-onne relationship between Customer and Contact.
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "contact_id")
+    @JsonIgnore
+    // Hide the address field in a Customer.
+    // This prevents an infinite nesting references of customer and contact.
     private Contact contact;
 
     private Customer() {}
@@ -80,5 +85,15 @@ public class Customer {
     public void setContact(Contact contact){
         this.contact = contact;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", companyName='" + companyName + '\'' +
+                ", address='" + address + '\'' +
+                ", country='" + country + '\'' +
+                ", contact=" + contact +
+                '}';
+    }
 }

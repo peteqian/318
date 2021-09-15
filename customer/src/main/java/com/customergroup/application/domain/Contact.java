@@ -25,6 +25,12 @@ public class Contact {
     @OneToOne(mappedBy = "contact")
     private  Customer customer;
 
+    // Enforce invariant
+    /*
+    L4 - Slide 25
+     */
+    private long assigned = -1;
+
     public Contact(){}
 
     public Contact(Long id, String name, String phone, String email, String position) {
@@ -90,4 +96,23 @@ public class Contact {
         this.customer = customer;
     }
 
+    public long getAssigned() {
+        return assigned;
+    }
+
+    public void setAssigned(long assigned) {
+        this.assigned = assigned;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", position='" + position + '\'' +
+                ", customer=" + customer +
+                '}';
+    }
 }
