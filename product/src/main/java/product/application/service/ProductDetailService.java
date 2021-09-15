@@ -22,7 +22,7 @@ public class ProductDetailService {
         return productDetailRepository.findAll();
     }
 
-    public Optional<ProductDetail> findProductDetailById(long id){
+    public Optional<ProductDetail> findProductDetailById(Long id){
         return productDetailRepository.findById(id);
     }
 

@@ -20,7 +20,7 @@ public class Product {
     )
     private Long id;
     private String productCategory;
-    private String productName;
+    private String name;
     private double price;
     private long stockQuantity;
 
@@ -30,12 +30,10 @@ public class Product {
     @JsonIgnore
     private ProductDetail productDetail;
 
-    public Product(){}
-
-    public Product(Long id, String productCategory, String productName, double price, long stockQuantity) {
+    public Product(Long id, String productCategory, String name, double price, long stockQuantity) {
         this.id = id;
         this.productCategory = productCategory;
-        this.productName = productName;
+        this.name = name;
         /*
             Value Objects
             Self-validating -> Invariant check
@@ -46,9 +44,9 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public Product(String productCategory, String productName, double price, long stockQuantity) {
+    public Product(String productCategory, String name, double price, long stockQuantity) {
         this.productCategory = productCategory;
-        this.productName = productName;
+        this.name = name;
         /*
             Value Objects
             Self-validating -> Invariant check
@@ -75,12 +73,12 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getPrice() {
@@ -112,7 +110,7 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", productCategory='" + productCategory + '\'' +
-                ", name='" + productName + '\'' +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 ", stockQuantity=" + stockQuantity +
                 ", productDetail=" + productDetail +

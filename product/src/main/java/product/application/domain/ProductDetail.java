@@ -10,13 +10,13 @@ import javax.persistence.*;
 public class ProductDetail {
     @Id
     @SequenceGenerator(
-            name = "productDetail_sequence",
-            sequenceName = "productDetail_sequence",
+            name = "product_sequence",
+            sequenceName = "product_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "productDetail_sequence"
+            generator = "product_sequence"
     )
     private Long id;
     private String description;
@@ -27,8 +27,6 @@ public class ProductDetail {
     @JoinColumn(name = "productDetail_id")
     @JsonIgnore
     private Product product;
-
-    public ProductDetail(){}
 
     public ProductDetail(Long id, String description, String comment) {
         this.id = id;
