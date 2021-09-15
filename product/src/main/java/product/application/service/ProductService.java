@@ -21,21 +21,18 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> findProductById(Long id){
+    public Optional<Product> findProductById(long id){
         return productRepository.findById(id);
     }
 
     // Is this an eventHandler?
     public void addProduct(Product product){
-        /*
+
         Boolean productExist =
-                productRepository.findExistingProduct(product.getName());
-
-
+                productRepository.findExistingProduct(product.getProductName());
         if(productExist){
-            throw new RuntimeException("Bad");
+            throw new ProductFailedException("A product with this name already exists!");
         }
-        */
         productRepository.save(product);
     }
 
@@ -43,10 +40,8 @@ public class ProductService {
                               String productCategory,
                               double price,
                               long stockQuantity){
-        /*
         Product product = productRepository.findProductByName(productName)
                 .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
-
 
         if (productCategory != null && productCategory.length() > 0){
             product.setProductCategory(productCategory);
@@ -58,12 +53,12 @@ public class ProductService {
             throw new ProductFailedException("Price cannot be below 0.0");
         }
 
-        if(stockQuantity >= 0){
+        if(stockQuantity >= 0 && (Long)stockQuantity != null){
             product.setStockQuantity(stockQuantity);
         } else {
             throw new ProductFailedException("Stock Quantity cannot be below 0");
         }
 
-         */
+
     }
 }
