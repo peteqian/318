@@ -27,6 +27,7 @@ public class Customer {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "contact_id")
     @JsonIgnore
+
     // Hide the address field in a Customer.
     // This prevents an infinite nesting references of customer and contact.
     private Contact contact;

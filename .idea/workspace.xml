@@ -5,22 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67c9e1dc-9845-4327-b731-bac30ec75662" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/demo/demo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/customer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/config/CustomerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/config/CustomerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/src/test/java/com/productgroup/example/order/OrderApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/domain/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/domain/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/domain/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/domain/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/domain/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/domain/ProductDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/domain/ProductDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/src/main/java/com/productgroup/configuration/productApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/product/src/main/java/com/productgroup/configuration/ProductConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/src/main/java/com/productgroup/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product/src/main/java/com/productgroup/controller/ProductController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +62,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15438822" />
     <property name="project.structure.side.proportion" value="0.52462524" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
   <component name="RunManager" selected="Application.ProductApplication">
@@ -96,6 +92,83 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="318" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="318" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="318" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="318" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Autodetect">
+      <module name="318" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="318" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Application.CustomerApplication" />

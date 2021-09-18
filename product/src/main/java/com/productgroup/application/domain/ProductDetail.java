@@ -22,11 +22,15 @@ public class ProductDetail {
     private String comment;
 
     // Build a one-to-onne relationship between Product and ProductDetail.
+    @OneToOne(mappedBy = "productDetail")
+    /*
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "productDetail_id")
+    @JoinColumn(name = "product_id")
     @JsonIgnore
+    */
     private Product product;
-    private int assigned = -1;
+
+    private long assigned = -1;
 
     public ProductDetail(){}
 
@@ -71,6 +75,14 @@ public class ProductDetail {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public long getAssigned() {
+        return assigned;
+    }
+
+    public void setAssigned(long assigned) {
+        this.assigned = assigned;
     }
 
     @Override

@@ -25,10 +25,13 @@ public class Product {
     private long stockQuantity;
 
     // Build a one-to-onne relationship between Product and ProductDetail.
+
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "productDetail_id")
     @JsonIgnore
-    private ProductDetail productDetail;
+
+    // @OneToOne(mappedBy = "product")
+    private ProductDetail productDetail = null;
 
     public Product(){}
 

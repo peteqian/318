@@ -99,8 +99,8 @@ public class CustomerController {
 
     // PUT - Update the Customer's Contact Details
     @PutMapping(path = "/customer/{id}/contact/{contactId}")
-    public void updateCustomerContactDetails(@PathVariable Long id,
-                                          @PathVariable Long contactId){
+    public void updateCustomerContactDetails(@PathVariable("id") Long id,
+                                             @PathVariable("contactId") Long contactId){
         customerService.updateCustomerContactDetails(id, contactId);
     }
 
@@ -120,7 +120,7 @@ public class CustomerController {
     // DELETE - removes the customer's contact details
     @DeleteMapping(path = "/customer/{customerId}/contact/{contactId}")
     public void removeContactDetails(@PathVariable("customerId") Long customerId,
-                                     @PathVariable("customerId") Long contactId){
+                                     @PathVariable("contactId") Long contactId){
         customerService.removeCustomerContactDetails(customerId, contactId);
     }
 
