@@ -51,7 +51,8 @@ public class CustomerConfig {
                     "positionTwo"
             );
 
-            contactRespository.saveAll(List.of(peter, pineapple));
+            contactRespository.save(peter);
+            contactRespository.save(pineapple);
         };
     }
 }

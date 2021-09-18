@@ -1,4 +1,4 @@
-package com.productgroup.example.order;
+package com.ordergroup.order;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
