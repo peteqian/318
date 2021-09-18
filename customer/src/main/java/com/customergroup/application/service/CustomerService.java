@@ -1,9 +1,11 @@
 package com.customergroup.application.service;
 
 import com.customergroup.application.domain.Contact;
-import com.customergroup.data.ContactRespository;
 import com.customergroup.application.domain.Customer;
+
+import com.customergroup.data.ContactRespository;
 import com.customergroup.data.CustomerRespository;
+
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.ContactFailedException;
 import com.customergroup.exception.ContactNotFoundException;
@@ -14,7 +16,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -33,12 +34,14 @@ public class CustomerService {
         return customerRespository.findAll();
     }
 
-    public Optional<Customer> getCustomerById(long id){
-        return customerRespository.findById(id);
+    public Customer getCustomerById(long id){
+        return customerRespository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Cannot a company with the id: " + id));
     }
 
-    public Optional<Customer> getCustomer(String companyName){
-        return customerRespository.findCustomerByCompanyName(companyName);
+    public Customer getCustomer(String companyName){
+        return customerRespository.findCustomerByCompanyName(companyName)
+                .orElseThrow(()-> new RuntimeException("Cannot find the company name: " + companyName));
     }
 
     public void addCustomer(Customer customer){
@@ -121,11 +124,19 @@ public class CustomerService {
     }
 
     @Transactional
-    public String[] getCustomerDetails(long customerId){
+    public void removeCustomerContactDetails(long customerId, long contactId){
         Customer customer = customerRespository.findById(customerId).orElseThrow(
                 () -> new CustomerNotFoundException("Customer with id " + customerId + " does not exist!")
         );
-        String[] details = {customer.getAddress(), customer.getContact().getPhone()};
-        return details;
+        Contact contact = contactRespository.findById(contactId).orElseThrow(
+                () -> new ContactNotFoundException("Customer with id " + contactId + " does not exist!")
+        );
+
+        if(Objects.equals(customer.getContact().getId(), contact.getId())){
+            customer.setContact(null);
+            contact.setCustomer(null);
+        } else {
+            throw new RuntimeException("Contact details does not belong to this customer.");
+        }
     }
 }

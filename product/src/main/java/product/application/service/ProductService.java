@@ -1,5 +1,7 @@
 package product.application.service;
 
+import com.productgroup.application.domain.ProductDetail;
+import com.productgroup.data.ProductDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import product.application.domain.Product;
@@ -12,20 +14,30 @@ import java.util.Optional;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
+    private final ProductDetailRepository productDetailRepository;
     @Autowired
-    public ProductService(ProductRepository productRepository){
+    public ProductService(ProductRepository productRepository,
+                          ProductDetailRepository productDetailRepository){
         this.productRepository = productRepository;
+        this.productDetailRepository = productDetailRepository;
     }
 
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
 
-    public Optional<Product> findProductById(long id){
-        return productRepository.findById(id);
+    public Product findProductById(long id){
+        return productRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Cannot find a product with " +
+                        "the id: " + id));
     }
 
-    // Is this an eventHandler?
+    public Product findProductByName(String productName){
+        return productRepository.findProductByName(productName)
+                .orElseThrow(()-> new RuntimeException("Cannot find a product with " +
+                        "the name: " + productName));
+    }
+
     public void addProduct(Product product){
 
         Boolean productExist =
@@ -58,7 +70,17 @@ public class ProductService {
         } else {
             throw new ProductFailedException("Stock Quantity cannot be below 0");
         }
-
-
     }
+
+    public void insertProductDetail(long productId, long productDetailId){
+        Product product = productRepository.findById(productId)
+                .orElseThrow(()-> new RuntimeException("Cannot find a product with the id: " + productId));
+
+        ProductDetail productDetail = productDetailRepository.findById(productDetailId)
+                .orElseThrow( ()->
+                        new ProductFailedException("Cannot find the product description of id: "
+                                + productDetailId));
+        
+    }
+
 }

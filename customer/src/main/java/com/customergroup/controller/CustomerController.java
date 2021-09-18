@@ -24,32 +24,50 @@ public class CustomerController {
         this.customerService = customerService;
         this.contactService = contactService;
     }
-
+    /*
+     ############ Get Mappings ############
+     */
     @GetMapping(path = "/customer")
     public List<Customer> getCustomers(){
         return customerService.getCustomers();
     }
 
-    @GetMapping(path = "/customer/get/{customerId}")
-    public Optional<Customer> getCustomer(@PathVariable("customerId") long Id){
+    @GetMapping(path = "/customer/{customerId}")
+    public Customer getCustomer(@PathVariable("customerId") long Id){
         return customerService.getCustomerById(Id);
     }
 
-    @GetMapping(path = "/customer/get/companyName={customerCompanyName}")
-    public Optional<Customer> getCustomer(@PathVariable("customerCompanyName") String customerCompanyName){
+    @GetMapping(path = "/customer/companyName={customerCompanyName}")
+    public Customer getCustomer(@PathVariable("customerCompanyName") String customerCompanyName){
         return customerService.getCustomer(customerCompanyName);
     }
 
+    @GetMapping(path = "/contact")
+    public List<Contact> getContacts(){
+        return contactService.getContacts();
+    }
+
+    @GetMapping(path = "/contact/{contactId}")
+    public Contact getContact(@PathVariable("contactId") Long contactId){
+        return contactService.getContact(contactId);
+    }
+
+    /*
+     ############ POST MAPPING ############
+     */
     @PostMapping(path = "/customer")
     public void registerNewCustomer(@RequestBody Customer customer){
         customerService.addCustomer(customer);
     }
 
-    @DeleteMapping(path = "/customer/{customerId}")
-    public void deleteCustomer(@PathVariable("customerId") Long customerId){
-        customerService.deleteCustomer(customerId);
+    @PostMapping(path = "/contact")
+    public void registerNewCustomer(@RequestBody Contact contact){
+        contactService.addContact(contact);
     }
 
+    /*
+    ############ PUT MAPPING ############
+    */
     @PutMapping(path = "/customer/{customerId}")
     public void updateCustomer(
             @PathVariable("customerId") long customerId,
@@ -64,31 +82,6 @@ public class CustomerController {
         customerService.updateCustomerByRaw(customer);
     }
 
-    // GET
-    @GetMapping(path = "/contact")
-    public List<Contact> getContacts(){
-        return contactService.getContacts();
-    }
-
-    // GET One Contact
-    @GetMapping(path = "/contact/get/{contactId}")
-    public Optional<Contact> getContact(@PathVariable("contactId") Long contactId){
-        return contactService.getContact(contactId);
-    }
-    // POST
-    @PostMapping(path = "/contact")
-    public void registerNewCustomer(@RequestBody Contact contact){
-        contactService.addContact(contact);
-    }
-
-    // DELETE
-    // Path Variable creates a /studentId within the API
-    @DeleteMapping(path = "/contact/{customerId}")
-    public void deleteStudent(@PathVariable("customerId") Long customerId){
-        contactService.deleteContact(customerId);
-    }
-
-    // PUT
     @PutMapping(path = "/contact/{customerId}")
     public void updateContact(
             @PathVariable("customerId") long customerId,
@@ -104,11 +97,32 @@ public class CustomerController {
         contactService.updateContactByRaw(contact);
     }
 
-    //PUT
+    // PUT - Update the Customer's Contact Details
     @PutMapping(path = "/customer/{id}/contact/{contactId}")
     public void updateCustomerContactDetails(@PathVariable Long id,
                                           @PathVariable Long contactId){
         customerService.updateCustomerContactDetails(id, contactId);
     }
+
+    /*
+    ############ DELETE MAPPING ############
+     */
+    @DeleteMapping(path = "/contact/{contactId}")
+    public void deleteContact(@PathVariable("contactId") Long contactId){
+        contactService.deleteContact(contactId);
+    }
+
+    @DeleteMapping(path = "/customer/{customerId}")
+    public void deleteCustomer(@PathVariable("customerId") Long customerId){
+        customerService.deleteCustomer(customerId);
+    }
+
+    // DELETE - removes the customer's contact details
+    @DeleteMapping(path = "/customer/{customerId}/contact/{contactId}")
+    public void removeContactDetails(@PathVariable("customerId") Long customerId,
+                                     @PathVariable("customerId") Long contactId){
+        customerService.removeCustomerContactDetails(customerId, contactId);
+    }
+
 }
 

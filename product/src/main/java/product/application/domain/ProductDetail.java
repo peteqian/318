@@ -27,6 +27,7 @@ public class ProductDetail {
     @JoinColumn(name = "productDetail_id")
     @JsonIgnore
     private Product product;
+    private int assigned = -1;
 
     public ProductDetail(){}
 

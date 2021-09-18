@@ -26,9 +26,9 @@ public class ContactService {
         return contactRespository.findAll();
     }
 
-
-    public Optional<Contact> getContact(Long contactId){
-        return contactRespository.findById(contactId);
+    public Contact getContact(long contactId){
+        return contactRespository.findById(contactId)
+                .orElseThrow(() -> new RuntimeException("Cannot find a contact by the id: " + contactId));
     }
 
     public void addContact(Contact contact){

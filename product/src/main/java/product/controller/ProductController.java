@@ -23,6 +23,10 @@ public class ProductController {
         this.productDetailService = productDetailService;
     }
 
+    /*
+    GET MAPPING
+     */
+
     @GetMapping("/product")
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
@@ -30,20 +34,41 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public Product findProductById(@PathVariable long id){
-        return productService.findProductById(id)
-                .orElseThrow(RuntimeException::new);
+        return productService.findProductById(id);
     }
-    /*
-    @GetMapping("/product/productName?={productName}")
-    public Optional<Product> findProductByName(@PathVariable String productName){
+
+    @GetMapping("/product/name?={productName}")
+    public Product findProductByName(@PathVariable String productName){
         return productService.findProductByName(productName);
     }
-    */
+
+    @GetMapping("/productDetail")
+    public List<ProductDetail> getAllProductDetails(){
+        return productDetailService.getAllProductDetails();
+    }
+
+    @GetMapping("/productDetail/{productDetailId}")
+    public ProductDetail findProductDetailById(@PathVariable long productDetailId){
+        return productDetailService.findProductDetailById(productDetailId);
+    }
+
+    /*
+    POST MAPPING
+     */
 
     @PostMapping("/product")
     public void createProduct(@RequestBody Product newProduct){
         productService.addProduct(newProduct);
     }
+
+    @PostMapping("/productDetail")
+    public void createProductDetail(@RequestBody ProductDetail newProductDetail){
+        productDetailService.addProductDetail(newProductDetail);
+    }
+
+    /*
+    PUT MAPPING
+     */
 
     @PutMapping("/product/{productName}")
     public void updateProduct(
@@ -54,16 +79,12 @@ public class ProductController {
         productService.updateProduct(productName, productCategory, price, stockQuantity);
     }
 
-    @GetMapping("/productDetail")
-    public List<ProductDetail> getAllProductDetails(){
-        return productDetailService.getAllProductDetails();
+    @PutMapping("/productDetail/{productDetailId}")
+    public void updateProduct(
+            @PathVariable("productDetailId")long productDetailId,
+            @PathVariable(required = false) String description,
+            @PathVariable(required = false) String comment){
+        productDetailService.updateProductDetail(productDetailId, description, comment);
     }
-
-    @GetMapping("/productDetail/{productDetailId}")
-    public ProductDetail findProductDetailById(@PathVariable long productDetailId){
-        return productDetailService.findProductDetailById(productDetailId)
-                .orElseThrow(RuntimeException::new);
-    }
-
 
 }

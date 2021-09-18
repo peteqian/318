@@ -22,8 +22,10 @@ public class ProductDetailService {
         return productDetailRepository.findAll();
     }
 
-    public Optional<ProductDetail> findProductDetailById(long id){
-        return productDetailRepository.findById(id);
+    public ProductDetail findProductDetailById(long id){
+        return productDetailRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Cannot find the product detail" +
+                        "with the id " + id));
     }
 
     public void addProductDetail(ProductDetail productDetail){
@@ -32,6 +34,15 @@ public class ProductDetailService {
 
     public void updateProductDetail(long id, String description, String comment){
         ProductDetail productDetail = productDetailRepository.findById(id)
-                .orElseThrow( ()-> new ProductFailedException("Cannot find the product description"));
+                .orElseThrow( ()-> new ProductFailedException("Cannot find the product description of id: " + id));
+
+        if (description != null && description.length() > 0){
+            productDetail.setDescription(description);
+        }
+
+        if (comment != null && comment.length() > 0){
+            productDetail.setComment(comment);
+        }
     }
+
 }
