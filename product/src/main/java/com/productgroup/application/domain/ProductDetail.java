@@ -1,7 +1,6 @@
-package product.application.domain;
+package com.productgroup.application.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import product.application.domain.Product;
 
 import javax.persistence.*;
 

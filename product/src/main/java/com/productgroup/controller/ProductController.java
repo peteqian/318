@@ -1,14 +1,13 @@
-package product.controller;
+package com.productgroup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import product.application.domain.Product;
-import product.application.domain.ProductDetail;
-import product.application.service.ProductDetailService;
-import product.application.service.ProductService;
+import com.productgroup.application.domain.Product;
+import com.productgroup.application.domain.ProductDetail;
+import com.productgroup.application.service.ProductDetailService;
+import com.productgroup.application.service.ProductService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 

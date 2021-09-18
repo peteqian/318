@@ -1,15 +1,14 @@
-package product.application.service;
+package com.productgroup.application.service;
 
+import com.productgroup.application.domain.Product;
 import com.productgroup.application.domain.ProductDetail;
 import com.productgroup.data.ProductDetailRepository;
+import com.productgroup.data.ProductRepository;
+import com.productgroup.exception.ProductFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import product.application.domain.Product;
-import product.exception.ProductFailedException;
-import product.data.ProductRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {

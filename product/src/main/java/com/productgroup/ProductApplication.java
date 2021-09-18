@@ -1,4 +1,4 @@
-package product;
+package com.productgroup;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

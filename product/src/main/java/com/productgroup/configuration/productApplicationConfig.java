@@ -1,12 +1,12 @@
-package product.configuration;
+package com.productgroup.configuration;
 
+import com.productgroup.data.ProductDetailRepository;
+import com.productgroup.data.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import product.application.domain.Product;
-import product.application.domain.ProductDetail;
-import product.data.ProductDetailRepository;
-import product.data.ProductRepository;
+import com.productgroup.application.domain.Product;
+import com.productgroup.application.domain.ProductDetail;
 
 import java.util.List;
 
@@ -29,7 +29,8 @@ public class productApplicationConfig {
                     5
             );
 
-            productRepository.saveAll(List.of(productOne, productTwo));
+            productRepository.save(productOne);
+            productRepository.save(productTwo);
 
             ProductDetail productDetailOne = new ProductDetail(
                     "It is a fluid",
@@ -41,8 +42,8 @@ public class productApplicationConfig {
                     "Not from dominos."
             );
 
-            productDetailRepository.saveAll(List.of(productDetailOne,
-                                                    productDetailTwo));
+            productDetailRepository.save(productDetailOne);
+            productDetailRepository.save(productDetailTwo);
         };
     }
 }

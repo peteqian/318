@@ -34,7 +34,8 @@ public class CustomerConfig {
                             "Palo Alto, CA 94304",
                     "U.S.A"
             );
-            customerRespository.saveAll(List.of(apple, tesla));
+            customerRespository.save(apple);
+            customerRespository.save(tesla);
 
             Contact peter = new Contact(
                     "Peter",

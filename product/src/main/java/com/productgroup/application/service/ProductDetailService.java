@@ -1,13 +1,12 @@
-package product.application.service;
+package com.productgroup.application.service;
 
+import com.productgroup.application.domain.ProductDetail;
+import com.productgroup.data.ProductDetailRepository;
+import com.productgroup.exception.ProductFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import product.application.domain.ProductDetail;
-import product.exception.ProductFailedException;
-import product.data.ProductDetailRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductDetailService {

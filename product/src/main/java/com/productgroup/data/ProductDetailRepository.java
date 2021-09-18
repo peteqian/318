@@ -1,8 +1,8 @@
-package product.data;
+package com.productgroup.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import product.application.domain.ProductDetail;
+import com.productgroup.application.domain.ProductDetail;
 
 @Repository
 public interface ProductDetailRepository
