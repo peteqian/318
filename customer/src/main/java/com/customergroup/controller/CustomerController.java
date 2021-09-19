@@ -1,14 +1,13 @@
 package com.customergroup.controller;
 
-import com.customergroup.application.domain.Contact;
-import com.customergroup.application.domain.Customer;
-import com.customergroup.application.service.ContactService;
-import com.customergroup.application.service.CustomerService;
+import com.customergroup.domain.Contact;
+import com.customergroup.domain.Customer;
+import com.customergroup.application.ContactService;
+import com.customergroup.application.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/")

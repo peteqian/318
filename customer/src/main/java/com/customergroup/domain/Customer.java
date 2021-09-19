@@ -1,4 +1,4 @@
-package com.customergroup.application.domain;
+package com.customergroup.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

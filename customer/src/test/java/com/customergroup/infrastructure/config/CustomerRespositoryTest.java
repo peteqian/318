@@ -1,7 +1,7 @@
-package com.customergroup.config;
+package com.customergroup.infrastructure.config;
 
-import com.customergroup.data.CustomerRespository;
-import com.customergroup.application.domain.Customer;
+import com.customergroup.domain.repository.CustomerRespository;
+import com.customergroup.domain.Customer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

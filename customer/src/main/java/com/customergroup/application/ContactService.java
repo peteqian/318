@@ -1,7 +1,7 @@
-package com.customergroup.application.service;
+package com.customergroup.application;
 
-import com.customergroup.application.domain.Contact;
-import com.customergroup.data.ContactRespository;
+import com.customergroup.domain.Contact;
+import com.customergroup.domain.repository.ContactRespository;
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.ContactNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class ContactService {

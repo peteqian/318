@@ -1,14 +1,12 @@
-package com.customergroup.config;
+package com.customergroup.infrastructure.config;
 
-import com.customergroup.application.domain.Contact;
-import com.customergroup.application.domain.Customer;
-import com.customergroup.data.ContactRespository;
-import com.customergroup.data.CustomerRespository;
+import com.customergroup.domain.Contact;
+import com.customergroup.domain.Customer;
+import com.customergroup.domain.repository.ContactRespository;
+import com.customergroup.domain.repository.CustomerRespository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
 
 @Configuration
 /*
