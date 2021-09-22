@@ -8,6 +8,7 @@ import com.productgroup.exception.ProductFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -47,6 +48,7 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    @Transactional
     public void updateProduct(String productName,
                               String productCategory,
                               double price,
@@ -71,6 +73,7 @@ public class ProductService {
         }
     }
 
+    @Transactional
     public void insertProductDetail(long productId, long productDetailId){
         Product product = productRepository.findById(productId)
                 .orElseThrow(()-> new RuntimeException("Cannot find a product with the id: " + productId));
@@ -79,7 +82,28 @@ public class ProductService {
                 .orElseThrow( ()->
                         new ProductFailedException("Cannot find the product description of id: "
                                 + productDetailId));
-        
+
+        // If the productDetail has already been assigned to a product.
+        if(productDetail.getAssigned() != -1){
+            // Throw an error
+            throw new ProductFailedException("Already assigned");
+        } else {
+
+            // Otherwise, get the productDetail from the current product.
+            if(product.getProductDetail() != null){
+                System.out.println("The current product's details is not empty");
+                // Clear the product detail assignment and set the product to null.
+                ProductDetail currentProductDetail = product.getProductDetail();
+                currentProductDetail.setAssigned(-1);
+                currentProductDetail.setProduct(null);
+            }
+            // set the Product to new details and assign the productdetail to new product.
+            product.setProductDetail(productDetail);
+            productDetail.setAssigned(productId);
+            System.out.println("Assigned new product details successfully.");
+        }
+
+
     }
 
 }

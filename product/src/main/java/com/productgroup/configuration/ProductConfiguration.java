@@ -11,7 +11,7 @@ import com.productgroup.application.domain.ProductDetail;
 import java.util.List;
 
 @Configuration
-public class productApplicationConfig {
+public class ProductConfiguration {
     @Bean
     CommandLineRunner productLineRunner (ProductRepository productRepository,
                                          ProductDetailRepository productDetailRepository){

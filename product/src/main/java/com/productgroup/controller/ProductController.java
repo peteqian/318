@@ -79,11 +79,21 @@ public class ProductController {
     }
 
     @PutMapping("/productDetail/{productDetailId}")
-    public void updateProduct(
+    public void updateProductDetail(
             @PathVariable("productDetailId")long productDetailId,
             @PathVariable(required = false) String description,
             @PathVariable(required = false) String comment){
         productDetailService.updateProductDetail(productDetailId, description, comment);
     }
+
+    @PutMapping("/product/{productId}/productDetail/{productDetailId}")
+    public void assignProductDetails(@PathVariable("productId") long productId,
+                                     @PathVariable("productDetailId") long productDetailId){
+        productService.insertProductDetail(productId, productDetailId);
+    }
+
+    /*
+    DELETE Mapping
+     */
 
 }
