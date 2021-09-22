@@ -1,7 +1,7 @@
 package com.productgroup.application.service;
 
-import com.productgroup.application.domain.ProductDetail;
-import com.productgroup.data.ProductDetailRepository;
+import com.productgroup.domain.ProductDetail;
+import com.productgroup.infrastructure.repository.ProductDetailRepository;
 import com.productgroup.exception.ProductFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

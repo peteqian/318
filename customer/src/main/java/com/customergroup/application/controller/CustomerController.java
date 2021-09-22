@@ -1,4 +1,4 @@
-package com.customergroup.controller;
+package com.customergroup.application.controller;
 
 import com.customergroup.domain.Contact;
 import com.customergroup.domain.Customer;

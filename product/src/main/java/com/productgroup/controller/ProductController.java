@@ -2,8 +2,8 @@ package com.productgroup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.productgroup.application.domain.Product;
-import com.productgroup.application.domain.ProductDetail;
+import com.productgroup.domain.Product;
+import com.productgroup.domain.ProductDetail;
 import com.productgroup.application.service.ProductDetailService;
 import com.productgroup.application.service.ProductService;
 
