@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -42,6 +44,21 @@ public class CustomerService {
     public Customer getCustomer(String companyName){
         return customerRespository.findCustomerByCompanyName(companyName)
                 .orElseThrow(()-> new RuntimeException("Cannot find the company name: " + companyName));
+    }
+
+    public Map<String, String> validateCustomer(Long customerId) {
+        boolean exists = customerRespository.existsById(customerId);
+        if (!exists) {
+            throw new CustomerNotFoundException("Company with id " + customerId + " does not exist!");
+        }
+
+        Customer custFound = customerRespository.getById(customerId);
+        Map<String, String> data = new HashMap<String, String>();
+
+        data.put("address", custFound.getAddress());
+        data.put("phone", custFound.getContact().getPhone());
+
+        return data;
     }
 
     public void addCustomer(Customer customer){

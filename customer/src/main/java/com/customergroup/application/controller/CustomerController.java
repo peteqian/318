@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/")
@@ -49,6 +50,11 @@ public class CustomerController {
     @GetMapping(path = "/contact/{contactId}")
     public Contact getContact(@PathVariable("contactId") Long contactId){
         return contactService.getContact(contactId);
+    }
+
+    @GetMapping(path = "/customer/validate/{customerId}")
+    public Map<String, String> validateCustomer(@PathVariable("customerId") long customerId){
+        return customerService.validateCustomer(customerId);
     }
 
     /*
