@@ -1,4 +1,4 @@
-package com.customergroup.domain.repository;
+package com.customergroup.infrastructure.repository;
 
 import com.customergroup.domain.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,7 +1,7 @@
 package com.customergroup.application;
 
 import com.customergroup.domain.Contact;
-import com.customergroup.domain.repository.ContactRespository;
+import com.customergroup.infrastructure.repository.ContactRespository;
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.ContactNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

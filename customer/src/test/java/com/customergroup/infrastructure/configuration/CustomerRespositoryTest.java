@@ -1,6 +1,6 @@
-package com.customergroup.infrastructure.config;
+package com.customergroup.infrastructure.configuration;
 
-import com.customergroup.domain.repository.CustomerRespository;
+import com.customergroup.infrastructure.repository.CustomerRespository;
 import com.customergroup.domain.Customer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

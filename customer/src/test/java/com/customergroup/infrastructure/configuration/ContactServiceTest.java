@@ -1,9 +1,9 @@
-package com.customergroup.infrastructure.config;
+package com.customergroup.infrastructure.configuration;
 
 import com.customergroup.application.ContactService;
-import com.customergroup.domain.repository.CustomerRespository;
+import com.customergroup.infrastructure.repository.CustomerRespository;
 import com.customergroup.domain.Contact;
-import com.customergroup.domain.repository.ContactRespository;
+import com.customergroup.infrastructure.repository.ContactRespository;
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.ContactNotFoundException;
 import org.junit.jupiter.api.BeforeEach;

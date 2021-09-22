@@ -3,8 +3,8 @@ package com.customergroup.application;
 import com.customergroup.domain.Contact;
 import com.customergroup.domain.Customer;
 
-import com.customergroup.domain.repository.ContactRespository;
-import com.customergroup.domain.repository.CustomerRespository;
+import com.customergroup.infrastructure.repository.ContactRespository;
+import com.customergroup.infrastructure.repository.CustomerRespository;
 
 import com.customergroup.exception.BadRequestException;
 import com.customergroup.exception.ContactFailedException;

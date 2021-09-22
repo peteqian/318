@@ -1,4 +1,4 @@
-package com.customergroup.domain.repository;
+package com.customergroup.infrastructure.repository;
 
 import com.customergroup.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

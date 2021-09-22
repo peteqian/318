@@ -1,9 +1,9 @@
-package com.customergroup.infrastructure.config;
+package com.customergroup.infrastructure.configuration;
 
 import com.customergroup.domain.Contact;
 import com.customergroup.domain.Customer;
-import com.customergroup.domain.repository.ContactRespository;
-import com.customergroup.domain.repository.CustomerRespository;
+import com.customergroup.infrastructure.repository.ContactRespository;
+import com.customergroup.infrastructure.repository.CustomerRespository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
