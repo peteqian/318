@@ -1,4 +1,4 @@
-package com.customergroup.application.domain;
+package com.customergroup.domain;
 
 import javax.persistence.*;
 
@@ -20,16 +20,11 @@ public class Contact {
     private String phone;
     private String email;
     private String position;
-    
+    private long assigned = -1;
+
     // One-to-one relationship
     @OneToOne(mappedBy = "contact")
     private  Customer customer;
-
-    // Enforce invariant
-    /*
-    L4 - Slide 25
-     */
-    private long assigned = -1;
 
     public Contact(){}
 

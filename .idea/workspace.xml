@@ -5,22 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67c9e1dc-9845-4327-b731-bac30ec75662" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/customer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/config/CustomerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/config/CustomerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/src/test/java/com/productgroup/example/order/OrderApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/ContactService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/repository/ContactRespository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/repository/CustomerRespository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/infrastructure/config/CustomerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/infrastructure/config/CustomerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactRespositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactRespositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerRespositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerRespositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,9 +61,16 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15438822" />
     <property name="project.structure.side.proportion" value="0.52462524" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
-  <component name="RunManager" selected="Application.ProductApplication">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.customergroup.infrastructure.config" />
+      <recent name="com.customergroup" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.CustomerApplication">
     <configuration name="CustomerApplication" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />

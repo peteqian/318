@@ -1,14 +1,13 @@
 package com.customergroup.controller;
 
-import com.customergroup.application.domain.Contact;
-import com.customergroup.application.domain.Customer;
-import com.customergroup.application.service.ContactService;
-import com.customergroup.application.service.CustomerService;
+import com.customergroup.domain.Contact;
+import com.customergroup.domain.Customer;
+import com.customergroup.application.ContactService;
+import com.customergroup.application.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/")
@@ -99,14 +98,15 @@ public class CustomerController {
 
     // PUT - Update the Customer's Contact Details
     @PutMapping(path = "/customer/{id}/contact/{contactId}")
-    public void updateCustomerContactDetails(@PathVariable Long id,
-                                          @PathVariable Long contactId){
+    public void updateCustomerContactDetails(@PathVariable("id") Long id,
+                                             @PathVariable("contactId") Long contactId){
         customerService.updateCustomerContactDetails(id, contactId);
     }
 
     /*
     ############ DELETE MAPPING ############
      */
+
     @DeleteMapping(path = "/contact/{contactId}")
     public void deleteContact(@PathVariable("contactId") Long contactId){
         contactService.deleteContact(contactId);
@@ -118,9 +118,9 @@ public class CustomerController {
     }
 
     // DELETE - removes the customer's contact details
-    @DeleteMapping(path = "/customer/{customerId}/contact/{contactId}")
+    @DeleteMapping(path = "/customer/{customerId}/removeContactDetail")
     public void removeContactDetails(@PathVariable("customerId") Long customerId,
-                                     @PathVariable("customerId") Long contactId){
+                                     @PathVariable("contactId") Long contactId){
         customerService.removeCustomerContactDetails(customerId, contactId);
     }
 
