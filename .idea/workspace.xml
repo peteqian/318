@@ -6,18 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="67c9e1dc-9845-4327-b731-bac30ec75662" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/domain/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/Contact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/service/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/ContactService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/config/CustomerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/infrastructure/config/CustomerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/data/ContactRespository.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/repository/ContactRespository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/data/CustomerRespository.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/repository/CustomerRespository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/config/ContactRespositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactRespositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/config/ContactServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/config/CustomerRespositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerRespositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/config/CustomerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
