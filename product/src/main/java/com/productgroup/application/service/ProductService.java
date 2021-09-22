@@ -86,7 +86,7 @@ public class ProductService {
         // If the productDetail has already been assigned to a product.
         if(productDetail.getAssigned() != -1){
             // Throw an error
-            throw new ProductFailedException("Failure");
+            throw new ProductFailedException("Already assigned");
         } else {
 
             // Otherwise, get the productDetail from the current product.

@@ -106,6 +106,7 @@ public class CustomerController {
     /*
     ############ DELETE MAPPING ############
      */
+
     @DeleteMapping(path = "/contact/{contactId}")
     public void deleteContact(@PathVariable("contactId") Long contactId){
         contactService.deleteContact(contactId);
@@ -117,7 +118,7 @@ public class CustomerController {
     }
 
     // DELETE - removes the customer's contact details
-    @DeleteMapping(path = "/customer/{customerId}/contact/{contactId}")
+    @DeleteMapping(path = "/customer/{customerId}/removeContactDetail")
     public void removeContactDetails(@PathVariable("customerId") Long customerId,
                                      @PathVariable("contactId") Long contactId){
         customerService.removeCustomerContactDetails(customerId, contactId);

@@ -118,9 +118,29 @@ public class CustomerService {
         Contact contact = contactRespository.findById(contactId).orElseThrow(
                 () -> new ContactNotFoundException("Customer with id " + contactId + " does not exist!")
         );
-        if(contact.getAssigned() != -1) throw new ContactFailedException(contactId);
-        contact.setAssigned(customerId);
-        customer.setContact(contact);
+
+        // If the contact details have already been assigned to the Customer.
+        if(contact.getAssigned() != -1){
+            // Throw an error
+            throw new ContactFailedException(contactId);
+        } else {
+
+            // Otherwise, get the contact details from the current Customer.
+            if(customer.getContact() != null){
+                System.out.println("The current customer's contact details isn't empty.");
+
+                // Clear the product detail assignment and set the product to null.
+                Contact currentContact = customer.getContact();
+                currentContact.setAssigned(-1);
+                currentContact.setCustomer(null);
+
+                System.out.println("Successfully cleared the contact's customer details.");
+            }
+            // set the Product to new details and assign the productdetail to new product.
+            customer.setContact(contact);
+            contact.setAssigned(customerId);
+            System.out.println("Assigned new contact details successfully.");
+        }
     }
 
     @Transactional
@@ -134,6 +154,7 @@ public class CustomerService {
 
         if(Objects.equals(customer.getContact().getId(), contact.getId())){
             customer.setContact(null);
+            contact.setAssigned(-1);
             contact.setCustomer(null);
         } else {
             throw new RuntimeException("Contact details does not belong to this customer.");
