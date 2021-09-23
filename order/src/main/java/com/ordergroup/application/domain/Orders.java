@@ -3,7 +3,7 @@ package com.ordergroup.application.domain;
 import javax.persistence.*;
 
 @Entity
-public class Order {
+public class Orders {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -19,9 +19,9 @@ public class Order {
     private String productName;
     private long quantity;
 
-    public Order(){}
+    public Orders(){}
 
-    public Order(String supplier, String product, long quantity) {
+    public Orders(String supplier, String product, long quantity) {
         this.supplier = supplier;
         this.productName = product;
         this.quantity = quantity;
