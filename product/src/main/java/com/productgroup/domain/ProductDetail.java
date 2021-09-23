@@ -1,6 +1,4 @@
-package com.productgroup.application.domain;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.productgroup.domain;
 
 import javax.persistence.*;
 

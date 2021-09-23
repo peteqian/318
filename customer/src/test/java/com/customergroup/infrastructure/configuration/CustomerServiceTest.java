@@ -1,6 +1,8 @@
 package com.customergroup.infrastructure.configuration;
 
-import com.customergroup.application.CustomerService;
+import com.customergroup.application.serivce.ContactService;
+import com.customergroup.application.serivce.CustomerService;
+import com.customergroup.domain.Contact;
 import com.customergroup.infrastructure.repository.CustomerRespository;
 import com.customergroup.domain.Customer;
 import com.customergroup.infrastructure.repository.ContactRespository;
@@ -13,9 +15,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
@@ -26,12 +28,15 @@ public class CustomerServiceTest {
 
     @Mock
     private CustomerRespository customerRespository;
+    @Mock
     private ContactRespository contactRespository;
     private CustomerService underTest;
+    private ContactService underTestContact;
 
     @BeforeEach
     void setUp(){
         underTest = new CustomerService(customerRespository, contactRespository);
+        underTestContact = new ContactService(contactRespository);
     }
 
     @Test
@@ -109,6 +114,51 @@ public class CustomerServiceTest {
                 .hasMessageContaining("Company with id " + temp_id + " does not exist!");
 
         verify(customerRespository, never()).deleteById(any());
+    }
+
+    @Test
+    void get_one_contact() {
+        // Test Data
+        Contact cake = new Contact(
+                100L,
+                "Cake",
+                "+61-412-123-456",
+                "cake@gmail.com",
+                "cake"
+        );
+
+
+        Customer customerOne = new Customer(
+                100L,
+                "companyName",
+                "address",
+                "country"
+        );
+
+        underTest.addCustomer(customerOne);
+        underTestContact.addContact(cake);
+
+        ArgumentCaptor<Customer> customerArgumentCaptor = ArgumentCaptor.forClass(Customer.class);
+        ArgumentCaptor<Contact> contactArgumentCaptor = ArgumentCaptor.forClass(Contact.class);
+
+        verify(customerRespository).save(customerArgumentCaptor.capture());
+        verify(contactRespository).save(contactArgumentCaptor.capture());
+
+        Contact capturedContact = contactArgumentCaptor.getValue();
+        Customer capturedCustomer = customerArgumentCaptor.getValue();
+
+        assertThat(capturedCustomer).isEqualTo(customerOne);
+        assertThat(capturedContact).isEqualTo(cake);
+
+        System.out.println(capturedCustomer);
+        System.out.println(capturedContact);
+
+        customerOne.setContact(cake);
+
+        System.out.println(customerOne);
+
+        assertThat(capturedCustomer).usingRecursiveComparison().isEqualTo(customerOne);
+
     }
 
 }

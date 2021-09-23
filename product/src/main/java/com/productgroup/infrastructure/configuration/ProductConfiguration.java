@@ -1,14 +1,12 @@
-package com.productgroup.configuration;
+package com.productgroup.infrastructure.configuration;
 
-import com.productgroup.data.ProductDetailRepository;
-import com.productgroup.data.ProductRepository;
+import com.productgroup.infrastructure.repository.ProductDetailRepository;
+import com.productgroup.infrastructure.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.productgroup.application.domain.Product;
-import com.productgroup.application.domain.ProductDetail;
-
-import java.util.List;
+import com.productgroup.domain.Product;
+import com.productgroup.domain.ProductDetail;
 
 @Configuration
 public class ProductConfiguration {

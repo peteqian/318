@@ -1,4 +1,4 @@
-package com.productgroup.application.domain;
+package com.productgroup.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.productgroup.exception.ProductFailedException;

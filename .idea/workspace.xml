@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67c9e1dc-9845-4327-b731-bac30ec75662" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/ICustomerValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/ContactService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/repository/ContactRespository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/repository/CustomerRespository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/infrastructure/config/CustomerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/infrastructure/config/CustomerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactRespositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactRespositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/ContactServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerRespositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerRespositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/config/CustomerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/serivce/ContactService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/serivce/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/configuration/ContactServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/configuration/ContactServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/configuration/CustomerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/test/java/com/customergroup/infrastructure/configuration/CustomerServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +63,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.productgroup" />
       <recent name="com.customergroup.infrastructure.config" />
       <recent name="com.customergroup" />
     </key>
@@ -80,15 +78,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.ordergroup.OrderApplication" />
-      <module name="order" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ProductApplication" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -98,14 +87,101 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CustomerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.customergroup.infrastructure.configuration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.customergroup.infrastructure.configuration" />
+      <option name="MAIN_CLASS_NAME" value="com.customergroup.infrastructure.configuration.CustomerServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerServiceTest.can_addContact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.customergroup.infrastructure.configuration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.customergroup.infrastructure.configuration" />
+      <option name="MAIN_CLASS_NAME" value="com.customergroup.infrastructure.configuration.CustomerServiceTest" />
+      <option name="METHOD_NAME" value="can_addContact" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerServiceTest.customer_add_contact_details" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.customergroup.infrastructure.configuration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.customergroup.infrastructure.configuration" />
+      <option name="MAIN_CLASS_NAME" value="com.customergroup.infrastructure.configuration.CustomerServiceTest" />
+      <option name="METHOD_NAME" value="customer_add_contact_details" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerServiceTest.getAllCustomers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.customergroup.infrastructure.configuration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.customergroup.infrastructure.configuration" />
+      <option name="MAIN_CLASS_NAME" value="com.customergroup.infrastructure.configuration.CustomerServiceTest" />
+      <option name="METHOD_NAME" value="getAllCustomers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerServiceTest.get_one_contact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.customergroup.infrastructure.configuration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.customergroup.infrastructure.configuration" />
+      <option name="MAIN_CLASS_NAME" value="com.customergroup.infrastructure.configuration.CustomerServiceTest" />
+      <option name="METHOD_NAME" value="get_one_contact" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.CustomerApplication" />
       <item itemvalue="Application.ProductApplication" />
-      <item itemvalue="Application.OrderApplication" />
+      <item itemvalue="JUnit.CustomerServiceTest.customer_add_contact_details" />
+      <item itemvalue="JUnit.CustomerServiceTest" />
+      <item itemvalue="JUnit.CustomerServiceTest.can_addContact" />
+      <item itemvalue="JUnit.CustomerServiceTest.getAllCustomers" />
+      <item itemvalue="JUnit.CustomerServiceTest.get_one_contact" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.OrderApplication" />
+        <item itemvalue="JUnit.CustomerServiceTest.get_one_contact" />
+        <item itemvalue="JUnit.CustomerServiceTest" />
+        <item itemvalue="JUnit.CustomerServiceTest.getAllCustomers" />
+        <item itemvalue="JUnit.CustomerServiceTest.can_addContact" />
+        <item itemvalue="JUnit.CustomerServiceTest.customer_add_contact_details" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +215,19 @@
           <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/318$CustomerServiceTest.ic" NAME="CustomerServiceTest Coverage Results" MODIFIED="1632282915643" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.customergroup.infrastructure.configuration.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/318$CustomerServiceTest_getAllCustomers.ic" NAME="CustomerServiceTest.getAllCustomers Coverage Results" MODIFIED="1632283098094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.customergroup.infrastructure.configuration.*</FILTER>
+    </SUITE>
   </component>
 </project>
