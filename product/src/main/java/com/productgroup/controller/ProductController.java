@@ -36,8 +36,8 @@ public class ProductController {
         return productService.findProductById(id);
     }
 
-    @GetMapping("/product/name?={productName}")
-    public Product findProductByName(@PathVariable String productName){
+    @GetMapping("/product/")
+    public Product findProductByName(@RequestParam String productName){
         return productService.findProductByName(productName);
     }
 
@@ -51,7 +51,7 @@ public class ProductController {
         return productDetailService.findProductDetailById(productDetailId);
     }
 
-    @GetMapping("/product/checkInventory/name?={productName}/quantity?={quantity}")
+    @GetMapping("/product/checkInventory/productName={productName}/quantity={quantity}")
     public double checkInventory(@PathVariable("productName") String productName,
                                  @PathVariable("quantity") long quantity) {
         return productService.checkInventory(productName, quantity);
