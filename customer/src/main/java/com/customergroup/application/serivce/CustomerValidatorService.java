@@ -6,10 +6,12 @@ import com.customergroup.exception.CustomerNotFoundException;
 import com.customergroup.infrastructure.repository.ContactRespository;
 import com.customergroup.infrastructure.repository.CustomerRespository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class CustomerValidatorService implements ICustomerValidator {
 
     private final CustomerRespository customerRespository;
