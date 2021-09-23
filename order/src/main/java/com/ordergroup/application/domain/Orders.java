@@ -2,7 +2,6 @@ package com.ordergroup.application.domain;
 
 import javax.persistence.*;
 
-@Entity
 public class Orders {
     @Id
     @GeneratedValue(
