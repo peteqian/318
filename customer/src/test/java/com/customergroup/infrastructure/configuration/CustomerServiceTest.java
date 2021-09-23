@@ -1,7 +1,7 @@
 package com.customergroup.infrastructure.configuration;
 
-import com.customergroup.application.ContactService;
-import com.customergroup.application.CustomerService;
+import com.customergroup.application.serivce.ContactService;
+import com.customergroup.application.serivce.CustomerService;
 import com.customergroup.domain.Contact;
 import com.customergroup.infrastructure.repository.CustomerRespository;
 import com.customergroup.domain.Customer;

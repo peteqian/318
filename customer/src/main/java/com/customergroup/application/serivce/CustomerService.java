@@ -1,8 +1,9 @@
-package com.customergroup.application;
+package com.customergroup.application.serivce;
 
 import com.customergroup.domain.Contact;
 import com.customergroup.domain.Customer;
 
+import com.customergroup.domain.ICustomerValidator;
 import com.customergroup.infrastructure.repository.ContactRespository;
 import com.customergroup.infrastructure.repository.CustomerRespository;
 
@@ -20,7 +21,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
-public class CustomerService {
+public class CustomerService implements ICustomerValidator {
 
     private final CustomerRespository customerRespository;
     private final ContactRespository contactRespository;
@@ -44,21 +45,6 @@ public class CustomerService {
     public Customer getCustomer(String companyName){
         return customerRespository.findCustomerByCompanyName(companyName)
                 .orElseThrow(()-> new RuntimeException("Cannot find the company name: " + companyName));
-    }
-
-    public Map<String, String> validateCustomer(Long customerId) {
-        boolean exists = customerRespository.existsById(customerId);
-        if (!exists) {
-            throw new CustomerNotFoundException("Company with id " + customerId + " does not exist!");
-        }
-
-        Customer custFound = customerRespository.getById(customerId);
-        Map<String, String> data = new HashMap<String, String>();
-
-        data.put("address", custFound.getAddress());
-        data.put("phone", custFound.getContact().getPhone());
-
-        return data;
     }
 
     public void addCustomer(Customer customer){
@@ -176,5 +162,22 @@ public class CustomerService {
         } else {
             throw new RuntimeException("Contact details does not belong to this customer.");
         }
+    }
+
+    // Implementation of Domain Service
+    @Override
+    public Map<String, String> validateCustomer(Long customerId) {
+        boolean exists = customerRespository.existsById(customerId);
+        if (!exists) {
+            throw new CustomerNotFoundException("Company with id " + customerId + " does not exist!");
+        }
+
+        Customer custFound = customerRespository.getById(customerId);
+        Map<String, String> data = new HashMap<String, String>();
+
+        data.put("address", custFound.getAddress());
+        data.put("phone", custFound.getContact().getPhone());
+
+        return data;
     }
 }

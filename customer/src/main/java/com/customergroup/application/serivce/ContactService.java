@@ -1,4 +1,4 @@
-package com.customergroup.application;
+package com.customergroup.application.serivce;
 
 import com.customergroup.domain.Contact;
 import com.customergroup.infrastructure.repository.ContactRespository;

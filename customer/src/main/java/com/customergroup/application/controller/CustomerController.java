@@ -2,8 +2,8 @@ package com.customergroup.application.controller;
 
 import com.customergroup.domain.Contact;
 import com.customergroup.domain.Customer;
-import com.customergroup.application.ContactService;
-import com.customergroup.application.CustomerService;
+import com.customergroup.application.serivce.ContactService;
+import com.customergroup.application.serivce.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
