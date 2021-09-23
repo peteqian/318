@@ -21,7 +21,7 @@ public class CustomerValidatorService implements ICustomerValidator {
         this.customerRespository = customerRespository;
         this.contactRespository = contactRespository;
     }
-    
+
     // Implementation of Domain Service
     @Override
     public Map<String, String> validateCustomer(long customerId) {
