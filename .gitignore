@@ -6,3 +6,5 @@
 .idea/**/shelf
 .idea/uiDesigner.xml
 .idea/workspace.xml
+.idea/vcs.xml
+.idea/
