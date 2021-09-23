@@ -51,6 +51,12 @@ public class ProductController {
         return productDetailService.findProductDetailById(productDetailId);
     }
 
+    @GetMapping("/product/checkInventory/name?={productName}/quantity?={quantity}")
+    public double checkInventory(@PathVariable("productName") String productName,
+                                 @PathVariable("quantity") long quantity) {
+        return productService.checkInventory(productName, quantity);
+    }
+
     /*
     POST MAPPING
      */
@@ -95,5 +101,15 @@ public class ProductController {
     /*
     DELETE Mapping
      */
+
+    @DeleteMapping("/product/{productId}")
+    public void deleteProduct(@PathVariable("productId") Long productId) {
+        productService.deleteProduct(productId);
+    }
+
+    @DeleteMapping("/productDetail/{productId}")
+    public void deleteProductDetail(@PathVariable("productId") Long productId) {
+        productDetailService.deleteProductDetail(productId);
+    }
 
 }

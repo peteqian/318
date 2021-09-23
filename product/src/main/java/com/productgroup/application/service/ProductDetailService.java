@@ -1,6 +1,7 @@
 package com.productgroup.application.service;
 
 import com.productgroup.domain.ProductDetail;
+import com.productgroup.exception.ProductNotFoundException;
 import com.productgroup.infrastructure.repository.ProductDetailRepository;
 import com.productgroup.exception.ProductFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,14 @@ public class ProductDetailService {
 
     public void addProductDetail(ProductDetail productDetail){
         productDetailRepository.save(productDetail);
+    }
+
+    public void deleteProductDetail(Long productId) {
+        boolean exists = productDetailRepository.existsById(productId);
+        if(!exists){
+            throw new ProductNotFoundException("Product with id " + productId + " does not exist!");
+        }
+        productDetailRepository.deleteById(productId);
     }
 
     public void updateProductDetail(long id, String description, String comment){

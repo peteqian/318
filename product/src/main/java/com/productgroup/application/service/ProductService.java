@@ -75,7 +75,7 @@ public class ProductService {
             throw new ProductFailedException("Price cannot be below 0.0");
         }
 
-        if(stockQuantity >= 0 && (Long)stockQuantity != null){
+        if(stockQuantity >= 0){
             product.setStockQuantity(stockQuantity);
         } else {
             throw new ProductFailedException("Stock Quantity cannot be below 0");
@@ -111,8 +111,19 @@ public class ProductService {
             productDetail.setAssigned(productId);
             System.out.println("Assigned new product details successfully.");
         }
+    }
 
+    public double checkInventory(String productName, long quanitity) {
+        Product product = productRepository.findProductByName(productName)
+                .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
 
+        System.out.print(product.getProductName() + " " + product.getStockQuantity());
+
+        if(product.getStockQuantity() >= quanitity) {
+            return product.getPrice();
+        } else {
+            throw new ProductFailedException("There is not enough stock for product: " + productName);
+        }
     }
 
 }
