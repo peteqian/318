@@ -126,4 +126,11 @@ public class ProductService {
         }
     }
 
+    @Transactional
+    public void updateStock(String productName, long quantity) {
+        Product product = productRepository.findProductByName(productName)
+                .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
+
+        product.setStockQuantity(product.getStockQuantity() - quantity);
+    }
 }
