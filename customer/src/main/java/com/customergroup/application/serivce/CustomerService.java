@@ -166,7 +166,7 @@ public class CustomerService implements ICustomerValidator {
 
     // Implementation of Domain Service
     @Override
-    public Map<String, String> validateCustomer(Long customerId) {
+    public Map<String, String> validateCustomer(long customerId) {
         boolean exists = customerRespository.existsById(customerId);
         if (!exists) {
             throw new CustomerNotFoundException("Company with id " + customerId + " does not exist!");
