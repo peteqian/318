@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67c9e1dc-9845-4327-b731-bac30ec75662" name="Changes" comment="checkInventory function draft">
+    <list default="true" id="67c9e1dc-9845-4327-b731-bac30ec75662" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/serivce/CustomerValidatorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/service/ProductDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/service/ProductDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product/src/main/java/com/productgroup/application/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/src/main/java/com/productgroup/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product/src/main/java/com/productgroup/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/serivce/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/application/serivce/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customer/src/main/java/com/customergroup/domain/Customer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,5 +1,6 @@
 package com.customergroup.application.controller;
 
+import com.customergroup.application.serivce.CustomerValidatorService;
 import com.customergroup.domain.Contact;
 import com.customergroup.domain.Customer;
 import com.customergroup.application.serivce.ContactService;
@@ -17,12 +18,15 @@ public class CustomerController {
 
     private final CustomerService customerService;
     private final ContactService contactService;
+    private final CustomerValidatorService customerValidatorService;
 
     @Autowired
     public CustomerController(CustomerService customerService,
-                              ContactService contactService){
+                              ContactService contactService,
+                              CustomerValidatorService customerValidatorService){
         this.customerService = customerService;
         this.contactService = contactService;
+        this.customerValidatorService = customerValidatorService;
     }
     /*
      ############ Get Mappings ############
@@ -54,7 +58,7 @@ public class CustomerController {
 
     @GetMapping(path = "/customer/validate/{customerId}")
     public Map<String, String> validateCustomer(@PathVariable("customerId") long customerId){
-        return customerService.validateCustomer(customerId);
+        return customerValidatorService.validateCustomer(customerId);
     }
 
     /*
