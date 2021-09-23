@@ -2,6 +2,7 @@ package com.productgroup.application.service;
 
 import com.productgroup.domain.Product;
 import com.productgroup.domain.ProductDetail;
+import com.productgroup.exception.ProductNotFoundException;
 import com.productgroup.infrastructure.repository.ProductDetailRepository;
 import com.productgroup.infrastructure.repository.ProductRepository;
 import com.productgroup.exception.ProductFailedException;
@@ -46,6 +47,14 @@ public class ProductService {
             throw new ProductFailedException("A product with this name already exists!");
         }
         productRepository.save(product);
+    }
+
+    public void deleteProduct(Long productId) {
+        boolean exists = productRepository.existsById(productId);
+        if(!exists){
+            throw new ProductNotFoundException("Product with id " + productId + " does not exist!");
+        }
+        productRepository.deleteById(productId);
     }
 
     @Transactional
