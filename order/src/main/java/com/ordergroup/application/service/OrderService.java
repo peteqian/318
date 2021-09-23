@@ -1,9 +1,11 @@
 package com.ordergroup.application.service;
 
 import com.ordergroup.application.domain.Orders;
+import com.ordergroup.application.domain.OrdersEvent;
 import com.ordergroup.data.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,8 +16,13 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
+    private ApplicationEventPublisher publisher;
+
     @Autowired
-    public OrderService(OrderRepository orderRepository) {this.orderRepository = orderRepository;}
+    public OrderService(OrderRepository orderRepository, ApplicationEventPublisher publisher) {
+        this.orderRepository = orderRepository;
+        this.publisher = publisher;
+    }
 
     public List<Orders> getOrders(){
         return orderRepository.findAll();
@@ -33,6 +40,12 @@ public class OrderService {
         // check product inventory
 
         // order Event
+        //create an order
+        Orders order;
+        //order Event
+        OrdersEvent ordersEvent = new OrdersEvent(order);
+        publisher.publishEvent(ordersEvent);
+
             // update product stock
     }
 
