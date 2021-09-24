@@ -26,7 +26,7 @@ public class Contact {
     @OneToOne(mappedBy = "contact")
     private  Customer customer;
 
-    public Contact(){}
+    protected Contact(){}
 
     public Contact(Long id, String name, String phone, String email, String position) {
         this.id = id;

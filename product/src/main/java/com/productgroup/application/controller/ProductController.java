@@ -1,4 +1,4 @@
-package com.productgroup.controller;
+package com.productgroup.application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +36,8 @@ public class ProductController {
         return productService.findProductById(id);
     }
 
-    @GetMapping("/product/name?={productName}")
-    public Product findProductByName(@PathVariable String productName){
+    @GetMapping("/product/")
+    public Product findProductByName(@RequestParam String productName){
         return productService.findProductByName(productName);
     }
 
@@ -49,6 +49,12 @@ public class ProductController {
     @GetMapping("/productDetail/{productDetailId}")
     public ProductDetail findProductDetailById(@PathVariable long productDetailId){
         return productDetailService.findProductDetailById(productDetailId);
+    }
+
+    @GetMapping("/product/checkInventory/productName={productName}/quantity={quantity}")
+    public double checkInventory(@PathVariable("productName") String productName,
+                                 @PathVariable("quantity") long quantity) {
+        return productService.checkInventory(productName, quantity);
     }
 
     /*
@@ -95,5 +101,15 @@ public class ProductController {
     /*
     DELETE Mapping
      */
+
+    @DeleteMapping("/product/{productId}")
+    public void deleteProduct(@PathVariable("productId") Long productId) {
+        productService.deleteProduct(productId);
+    }
+
+    @DeleteMapping("/productDetail/{productId}")
+    public void deleteProductDetail(@PathVariable("productId") Long productId) {
+        productDetailService.deleteProductDetail(productId);
+    }
 
 }

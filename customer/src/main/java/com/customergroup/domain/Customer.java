@@ -32,7 +32,7 @@ public class Customer {
     // This prevents an infinite nesting references of customer and contact.
     private Contact contact;
 
-    public Customer() {}
+    protected Customer() {}
 
     public Customer(Long id, String companyName, String address, String country) {
         this.id = id;

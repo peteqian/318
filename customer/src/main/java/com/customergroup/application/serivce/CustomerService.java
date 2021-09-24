@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
-public class CustomerService implements ICustomerValidator {
+public class CustomerService  {
 
     private final CustomerRespository customerRespository;
     private final ContactRespository contactRespository;
@@ -164,20 +164,5 @@ public class CustomerService implements ICustomerValidator {
         }
     }
 
-    // Implementation of Domain Service
-    @Override
-    public Map<String, String> validateCustomer(long customerId) {
-        boolean exists = customerRespository.existsById(customerId);
-        if (!exists) {
-            throw new CustomerNotFoundException("Company with id " + customerId + " does not exist!");
-        }
 
-        Customer custFound = customerRespository.getById(customerId);
-        Map<String, String> data = new HashMap<String, String>();
-
-        data.put("address", custFound.getAddress());
-        data.put("phone", custFound.getContact().getPhone());
-
-        return data;
-    }
 }

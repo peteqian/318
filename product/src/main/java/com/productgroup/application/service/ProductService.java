@@ -2,6 +2,7 @@ package com.productgroup.application.service;
 
 import com.productgroup.domain.Product;
 import com.productgroup.domain.ProductDetail;
+import com.productgroup.exception.ProductNotFoundException;
 import com.productgroup.infrastructure.repository.ProductDetailRepository;
 import com.productgroup.infrastructure.repository.ProductRepository;
 import com.productgroup.exception.ProductFailedException;
@@ -48,6 +49,14 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public void deleteProduct(Long productId) {
+        boolean exists = productRepository.existsById(productId);
+        if(!exists){
+            throw new ProductNotFoundException("Product with id " + productId + " does not exist!");
+        }
+        productRepository.deleteById(productId);
+    }
+
     @Transactional
     public void updateProduct(String productName,
                               String productCategory,
@@ -66,7 +75,7 @@ public class ProductService {
             throw new ProductFailedException("Price cannot be below 0.0");
         }
 
-        if(stockQuantity >= 0 && (Long)stockQuantity != null){
+        if(stockQuantity >= 0){
             product.setStockQuantity(stockQuantity);
         } else {
             throw new ProductFailedException("Stock Quantity cannot be below 0");
@@ -102,8 +111,26 @@ public class ProductService {
             productDetail.setAssigned(productId);
             System.out.println("Assigned new product details successfully.");
         }
-
-
     }
 
+    public double checkInventory(String productName, long quanitity) {
+        Product product = productRepository.findProductByName(productName)
+                .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
+
+        System.out.print(product.getProductName() + " " + product.getStockQuantity());
+
+        if(product.getStockQuantity() >= quanitity) {
+            return product.getPrice();
+        } else {
+            throw new ProductFailedException("There is not enough stock for product: " + productName);
+        }
+    }
+
+    @Transactional
+    public void updateStock(String productName, long quantity) {
+        Product product = productRepository.findProductByName(productName)
+                .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
+
+        product.setStockQuantity(product.getStockQuantity() - quantity);
+    }
 }
