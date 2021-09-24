@@ -3,7 +3,7 @@ package com.ordergroup.application.domain;
 import javax.persistence.*;
 
 @Entity
-public class Order {
+public class Orders {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -18,13 +18,19 @@ public class Order {
     private String supplier;
     private String productName;
     private long quantity;
+    private double totalPrice;
+    private String cusAddress;
+    private String cusPhoneNum;
 
-    public Order(){}
+    public Orders(){}
 
-    public Order(String supplier, String product, long quantity) {
+    public Orders(String supplier, String product, long quantity, double totalPrice, String cusAddress, String cusPhoneNum) {
         this.supplier = supplier;
         this.productName = product;
         this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.cusAddress = cusAddress;
+        this.cusPhoneNum = cusPhoneNum;
     }
 
     public Long getId() {
@@ -59,13 +65,28 @@ public class Order {
         this.quantity = quantity;
     }
 
+    public double getTotalPrice() {return  totalPrice;}
+
+    public void setTotalPrice(Double totalPrice) {this.totalPrice = totalPrice;}
+
+    public String getCusAddress() {return cusAddress;}
+
+    public void setCusAddress(String address) {this.cusAddress = address;}
+
+    public String getCusPhoneNum() {return cusPhoneNum;}
+
+    public void setCusPhoneNum(String cusPhoneNum) {this.cusPhoneNum = cusPhoneNum;}
+
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
                 ", supplier='" + supplier + '\'' +
                 ", product='" + productName + '\'' +
-                ", quantity=" + quantity +
+                ", quantity=" + quantity + '\'' +
+                ", totalPrice='" + totalPrice + '\'' +
+                ", cusAddress='" + cusAddress + '\'' +
+                ", cusPhoneNum=" + cusPhoneNum + '\'' +
                 '}';
     }
 }

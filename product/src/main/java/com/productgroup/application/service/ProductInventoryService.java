@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class ProductInventoryService implements IProductInventory {
@@ -24,14 +26,18 @@ public class ProductInventoryService implements IProductInventory {
     }
 
     @Override
-    public double checkInventory(String productName, long quantity) {
+    public Map<String, String> checkInventory(String productName, long quantity) {
         Product product = productRepository.findProductByName(productName)
                 .orElseThrow(() -> new ProductFailedException("Product " + productName + " cannot be found."));
 
         System.out.print(product.getProductName() + " " + product.getStockQuantity());
 
+        Map<String, String> data = new HashMap<>();
+        data.put("price", String.valueOf(product.getPrice()));
+        data.put("supplier", product.getSupplier());
+
         if (product.getStockQuantity() >= quantity) {
-            return product.getPrice();
+            return data;
         } else {
             throw new ProductFailedException("There is not enough stock for product: " + productName
             + ". The amount of available stock: " + product.getStockQuantity()

@@ -21,6 +21,7 @@ public class Product {
     private Long id;
     private String productCategory;
     private String productName;
+    private String supplier;
     private double price;
     private long stockQuantity;
 
@@ -35,7 +36,7 @@ public class Product {
 
     public Product(){}
 
-    public Product(Long id, String productCategory, String productName, double price, long stockQuantity) {
+    public Product(Long id, String productCategory, String productName, double price, long stockQuantity, String supplier) {
         this.id = id;
         this.productCategory = productCategory;
         this.productName = productName;
@@ -47,9 +48,10 @@ public class Product {
         this.price = price;
         if(stockQuantity < 0){throw new ProductFailedException("You cannot enter a product with negative quantity");}
         this.stockQuantity = stockQuantity;
+        this.supplier = supplier;
     }
 
-    public Product(String productCategory, String productName, double price, long stockQuantity) {
+    public Product(String productCategory, String productName, double price, long stockQuantity,String supplier) {
         this.productCategory = productCategory;
         this.productName = productName;
         /*
@@ -60,6 +62,7 @@ public class Product {
         this.price = price;
         if(stockQuantity < 0){throw new ProductFailedException("You cannot enter a product with negative quantity");}
         this.stockQuantity = stockQuantity;
+        this.supplier = supplier;
     }
 
     public Long getId() {
@@ -110,6 +113,10 @@ public class Product {
         this.productDetail = productDetail;
     }
 
+    public String getSupplier() {return supplier;}
+
+    public void setSupplier(String supplier) {this.supplier = supplier;}
+
     @Override
     public String toString() {
         return "Product{" +
@@ -119,6 +126,7 @@ public class Product {
                 ", price=" + price +
                 ", stockQuantity=" + stockQuantity +
                 ", productDetail=" + productDetail +
+                ", supplier=" + supplier +
                 '}';
     }
 }

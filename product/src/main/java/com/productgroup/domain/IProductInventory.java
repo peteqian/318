@@ -1,5 +1,7 @@
 package com.productgroup.domain;
 
+import java.util.Map;
+
 public interface IProductInventory {
-    double checkInventory(String productName, long quantity);
+    Map<String, String> checkInventory(String productName, long quantity);
 }

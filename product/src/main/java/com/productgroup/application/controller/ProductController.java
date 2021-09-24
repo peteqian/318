@@ -10,6 +10,7 @@ import com.productgroup.application.service.ProductDetailService;
 import com.productgroup.application.service.ProductService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ProductController {
@@ -59,8 +60,8 @@ public class ProductController {
     }
 
     @GetMapping("/product/checkInventory/productName={productName}/quantity={quantity}")
-    public double checkInventory(@PathVariable("productName") String productName,
-                                 @PathVariable("quantity") long quantity) {
+    public Map<String, String> checkInventory(@PathVariable("productName") String productName,
+                                              @PathVariable("quantity") long quantity) {
         return productInventory.checkInventory(productName, quantity);
     }
 
@@ -105,7 +106,7 @@ public class ProductController {
     }
 
     @PutMapping("/product/{productName}/quantity/{quantity}")
-    public void assignProductDetails(@PathVariable("productName") String productName,
+    public void updateStock(@PathVariable("productName") String productName,
                                      @PathVariable("quantity") long quantity){
         productStockService.updateStock(productName, quantity);
     }

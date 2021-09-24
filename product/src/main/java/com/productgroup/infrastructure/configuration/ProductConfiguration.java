@@ -18,13 +18,15 @@ public class ProductConfiguration {
                     "Beverage",
                     "Water",
                     1.05,
-                    10
+                    10,
+                    "coca-cola"
             );
             Product productTwo = new Product(
                     "Food",
                     "Hotdog",
                     10.00,
-                    5
+                    5,
+                    "Random-street-vendor"
             );
 
             productRepository.save(productOne);
