@@ -39,21 +39,21 @@ class ContactServiceTest {
         verify(contactRespository).findAll();
     }
 
-    @Test
-    void get_one_contact() {
-        // Test Data
-        Contact cake = new Contact(
-                "Cake",
-                "+61-412-123-456",
-                "cake@gmail.com",
-                "cake"
-        );
-        underTest.addContact(cake);
-
-        // Condition
-        underTest.getContact(cake.getId());
-        verify(contactRespository).findById(cake.getId());
-    }
+//    @Test
+//    void get_one_contact() {
+//        // Test Data
+//        Contact cake = new Contact(
+//                "Cake",
+//                "+61-412-123-456",
+//                "cake@gmail.com",
+//                "cake"
+//        );
+//        underTest.addContact(cake);
+//
+//        // Condition
+//        underTest.getContact(cake.getId());
+//        verify(contactRespository).findById(cake.getId());
+//    }
 
     @Test
     void can_addContact() {
