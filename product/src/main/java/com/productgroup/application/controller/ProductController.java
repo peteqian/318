@@ -105,6 +105,12 @@ public class ProductController {
         productService.insertProductDetail(productId, productDetailId);
     }
 
+    @PutMapping("/product/{productName}/quantity/{quantity}")
+    public void assignProductDetails(@PathVariable("productName") String productName,
+                                     @PathVariable("quantity") long quantity){
+        productInventory.updateStock(productName, quantity);
+    }
+
     /*
     DELETE Mapping
      */

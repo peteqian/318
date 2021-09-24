@@ -8,6 +8,8 @@ import com.productgroup.infrastructure.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ProductInventoryService implements IProductInventory {
 
@@ -21,11 +23,21 @@ public class ProductInventoryService implements IProductInventory {
         this.productDetailRepository = productDetailRepository;
     }
 
+    @Transactional
     @Override
     public void updateStock(String productName, long quantity) {
         Product product = productRepository.findProductByName(productName)
                 .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
 
-        product.setStockQuantity(product.getStockQuantity() - quantity);
+        // If the inserted quantity results in the product's quantity to be less than
+        // zero then throw an error.
+        if((product.getStockQuantity() - quantity) < 0) {
+            throw new ProductFailedException("There is not enough stock for product: " + productName +
+                    ". Quantity you requested: " + quantity +
+                    ". Available quantity of the product: " + product.getStockQuantity());
+        } else {
+            product.setStockQuantity(product.getStockQuantity() - quantity);
+        }
+
     }
 }
