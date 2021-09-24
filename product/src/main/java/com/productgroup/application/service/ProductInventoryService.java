@@ -33,8 +33,8 @@ public class ProductInventoryService implements IProductInventory {
         System.out.print(product.getProductName() + " " + product.getStockQuantity());
 
         Map<String, String> data = new HashMap<>();
-        data.put("Price", String.valueOf(product.getPrice()));
-        data.put("Supplier", product.getSupplier());
+        data.put("price", String.valueOf(product.getPrice()));
+        data.put("supplier", product.getSupplier());
 
         if (product.getStockQuantity() >= quantity) {
             return data;

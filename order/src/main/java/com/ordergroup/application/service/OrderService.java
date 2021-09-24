@@ -1,5 +1,7 @@
 package com.ordergroup.application.service;
 
+import com.ordergroup.application.domain.Product;
+import com.ordergroup.application.domain.Customer;
 import com.ordergroup.application.domain.Orders;
 import com.ordergroup.application.domain.OrdersEvent;
 import com.ordergroup.data.OrderRepository;
@@ -7,11 +9,9 @@ import com.ordergroup.data.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
@@ -42,21 +42,22 @@ public class OrderService {
     public void create(long custID, String productName, long quanitity){
         // validate customer
         String validateURL = "http://localhost:8080/api/customer/validate="+custID;
-        Map<String, String> cusBasicDetails = restTemplate.getForObject(validateURL, Map.class);
+        Customer customer = restTemplate.getForObject(validateURL, Customer.class);
 
         // check product inventory
         String checkInvURL = "http://localhost:8081/product/checkInventory/productName="+productName+"/quantity="+quanitity;
-        Map<String, String> prodDetails = restTemplate.getForObject(checkInvURL, Map.class);
+        Product product = restTemplate.getForObject(checkInvURL, Product.class);
 
-        double totalPrice = (Double.parseDouble(prodDetails.get("Price")) * quanitity);
+        double totalPrice = (Double.parseDouble(product.getPrice()) * quanitity);
         // order Event
         //create an order
-        Orders order = new Orders(prodDetails.get("Supplier")
+        Orders order = new Orders(product.getSupplier()
                                 , productName
                                 , quanitity
                                 , totalPrice
-                                , cusBasicDetails.get("address")
-                                , cusBasicDetails.get("phone"));
+                                , customer.getAddress()
+                                , customer.getPhone()
+        );
 
         orderRepository.save(order);
         //order Event
