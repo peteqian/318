@@ -107,7 +107,7 @@ public class ProductController {
     }
 
     @PutMapping("/product/{productName}/quantity/{quantity}")
-    public void assignProductDetails(@PathVariable("productName") String productName,
+    public void updateStock(@PathVariable("productName") String productName,
                                      @PathVariable("quantity") long quantity){
         productStockService.updateStock(productName, quantity);
     }

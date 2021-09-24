@@ -7,11 +7,11 @@ public class OrdersEvent {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "order_Sequence"
+            generator = "ordersEvent_sequence"
     )
     @SequenceGenerator(
-            name = "order_sequence",
-            sequenceName = "order_seqeunce",
+            name = "ordersEvent_sequence",
+            sequenceName = "ordersEvent_seqeunce",
             allocationSize = 1
     )
     private long id;
@@ -23,7 +23,7 @@ public class OrdersEvent {
 
     public  OrdersEvent(Orders order){
         super();
-        this.orderID = orderID;
+        this.orderID = order.getId();
         this.orderString = order.toString();
     }
 
