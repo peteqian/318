@@ -1,5 +1,7 @@
 package com.productgroup.application.controller;
 
+import com.productgroup.application.service.ProductInventoryService;
+import com.productgroup.application.service.ProductStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.productgroup.domain.Product;
@@ -10,16 +12,21 @@ import com.productgroup.application.service.ProductService;
 import java.util.List;
 
 @RestController
-
 public class ProductController {
     private final ProductService productService;
     private final ProductDetailService productDetailService;
+    private final ProductStockService productStockService;
+    private final ProductInventoryService productInventory;
 
     @Autowired
     ProductController(ProductService productService,
-                      ProductDetailService productDetailService){
+                      ProductDetailService productDetailService,
+                      ProductStockService productStockService,
+                      ProductInventoryService productInventory){
         this.productService = productService;
         this.productDetailService = productDetailService;
+        this.productStockService = productStockService;
+        this.productInventory = productInventory;
     }
 
     /*
@@ -54,7 +61,7 @@ public class ProductController {
     @GetMapping("/product/checkInventory/productName={productName}/quantity={quantity}")
     public double checkInventory(@PathVariable("productName") String productName,
                                  @PathVariable("quantity") long quantity) {
-        return productService.checkInventory(productName, quantity);
+        return productStockService.checkInventory(productName, quantity);
     }
 
     /*
