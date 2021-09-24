@@ -44,8 +44,8 @@ public class ProductController {
         return productService.findProductById(id);
     }
 
-    @GetMapping("/product/")
-    public Product findProductByName(@RequestParam String productName){
+    @GetMapping("/product/name={productName}")
+    public Product findProductByName(@PathVariable String productName){
         return productService.findProductByName(productName);
     }
 

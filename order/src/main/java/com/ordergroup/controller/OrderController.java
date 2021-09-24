@@ -1,7 +1,9 @@
 package com.ordergroup.controller;
 
 
+import com.ordergroup.application.domain.Customer;
 import com.ordergroup.application.domain.Orders;
+import com.ordergroup.application.domain.Product;
 import com.ordergroup.application.service.OrderService;
 import com.ordergroup.application.service.OrdersEventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,14 @@ public class OrderController {
     @GetMapping(path = "/orders/{orderID}")
     public Orders getOrder(@PathVariable("orderID") long Id) { return orderService.getOrder(Id);}
 
-    //Post Mapping
+    @GetMapping(path = "/orders/{orderID}/customer")
+    public Customer getCustomerInfo(@PathVariable("orderID") long id) {return orderService.getCustomerInfo(id);}
 
+    @GetMapping(path = "orders/{orderID}/product")
+    public Product getProductInfo(@PathVariable("orderID")long id) {return orderService.getProductInfo(id);}
+
+
+    //Post Mapping
     @PostMapping(path = "/orders")
     public void create(@RequestBody Map<String, String> values){
         orderService.create(Long.parseLong(values.get("custID")), values.get("productName"), Long.parseLong(values.get("quantity")));
