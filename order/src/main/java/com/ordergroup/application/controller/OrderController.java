@@ -1,9 +1,9 @@
-package com.ordergroup.controller;
+package com.ordergroup.application.controller;
 
 
-import com.ordergroup.application.domain.Customer;
-import com.ordergroup.application.domain.Orders;
-import com.ordergroup.application.domain.Product;
+import com.ordergroup.domain.Customer;
+import com.ordergroup.domain.Orders;
+import com.ordergroup.domain.Product;
 import com.ordergroup.application.service.OrderService;
 import com.ordergroup.application.service.OrdersEventService;
 import org.springframework.beans.factory.annotation.Autowired;

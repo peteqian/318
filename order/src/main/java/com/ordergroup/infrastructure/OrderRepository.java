@@ -1,6 +1,6 @@
-package com.ordergroup.data;
+package com.ordergroup.infrastructure;
 
-import com.ordergroup.application.domain.Orders;
+import com.ordergroup.domain.Orders;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

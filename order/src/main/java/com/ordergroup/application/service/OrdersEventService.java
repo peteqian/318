@@ -1,8 +1,8 @@
 package com.ordergroup.application.service;
 
-import com.ordergroup.application.domain.Orders;
-import com.ordergroup.application.domain.OrdersEvent;
-import com.ordergroup.data.OrdersEventRepository;
+import com.ordergroup.domain.Orders;
+import com.ordergroup.domain.OrdersEvent;
+import com.ordergroup.infrastructure.OrdersEventRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -14,8 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.Map;
 
 @Service
 public class OrdersEventService {

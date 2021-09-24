@@ -1,6 +1,6 @@
-package com.ordergroup.data;
+package com.ordergroup.infrastructure;
 
-import com.ordergroup.application.domain.OrdersEvent;
+import com.ordergroup.domain.OrdersEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,24 +1,20 @@
 package com.ordergroup.application.service;
 
-import com.ordergroup.application.domain.Product;
-import com.ordergroup.application.domain.Customer;
-import com.ordergroup.application.domain.Orders;
-import com.ordergroup.application.domain.OrdersEvent;
-import com.ordergroup.data.OrderRepository;
+import com.ordergroup.domain.Product;
+import com.ordergroup.domain.Customer;
+import com.ordergroup.domain.Orders;
+import com.ordergroup.domain.OrdersEvent;
+import com.ordergroup.infrastructure.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service

@@ -1,4 +1,4 @@
-package com.ordergroup.application.domain;
+package com.ordergroup.domain;
 
 import javax.persistence.*;
 
