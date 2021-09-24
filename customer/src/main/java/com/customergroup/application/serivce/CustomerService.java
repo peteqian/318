@@ -147,22 +147,16 @@ public class CustomerService  {
     }
 
     @Transactional
-    public void removeCustomerContactDetails(long customerId, long contactId){
+    public void removeCustomerContactDetails(long customerId){
         Customer customer = customerRespository.findById(customerId).orElseThrow(
                 () -> new CustomerNotFoundException("Customer with id " + customerId + " does not exist!")
         );
-        Contact contact = contactRespository.findById(contactId).orElseThrow(
-                () -> new ContactNotFoundException("Customer with id " + contactId + " does not exist!")
+        Contact contact = contactRespository.findById(customer.getContact().getId()).orElseThrow(
+                () -> new ContactNotFoundException("Customer with id " + customer.getContact().getId()+ " does not exist!")
         );
-
-        if(Objects.equals(customer.getContact().getId(), contact.getId())){
-            customer.setContact(null);
-            contact.setAssigned(-1);
-            contact.setCustomer(null);
-        } else {
-            throw new RuntimeException("Contact details does not belong to this customer.");
-        }
+        customer.setContact(null);
+        contact.setAssigned(-1);
+        contact.setCustomer(null);
     }
-
 
 }

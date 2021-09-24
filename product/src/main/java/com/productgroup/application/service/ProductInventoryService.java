@@ -23,21 +23,19 @@ public class ProductInventoryService implements IProductInventory {
         this.productDetailRepository = productDetailRepository;
     }
 
-    @Transactional
     @Override
-    public void updateStock(String productName, long quantity) {
+    public double checkInventory(String productName, long quantity) {
         Product product = productRepository.findProductByName(productName)
-                .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
+                .orElseThrow(() -> new ProductFailedException("Product " + productName + " cannot be found."));
 
-        // If the inserted quantity results in the product's quantity to be less than
-        // zero then throw an error.
-        if((product.getStockQuantity() - quantity) < 0) {
-            throw new ProductFailedException("There is not enough stock for product: " + productName +
-                    ". Quantity you requested: " + quantity +
-                    ". Available quantity of the product: " + product.getStockQuantity());
+        System.out.print(product.getProductName() + " " + product.getStockQuantity());
+
+        if (product.getStockQuantity() >= quantity) {
+            return product.getPrice();
         } else {
-            product.setStockQuantity(product.getStockQuantity() - quantity);
+            throw new ProductFailedException("There is not enough stock for product: " + productName
+            + ". The amount of available stock: " + product.getStockQuantity()
+            + ". The quantity you have requested for: " + quantity);
         }
-
     }
 }

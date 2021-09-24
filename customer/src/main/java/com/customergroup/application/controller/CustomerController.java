@@ -56,7 +56,7 @@ public class CustomerController {
         return contactService.getContact(contactId);
     }
 
-    @GetMapping(path = "/customer/validate/{customerId}")
+    @GetMapping(path = "/customer/validate={customerId}")
     public Map<String, String> validateCustomer(@PathVariable("customerId") long customerId){
         return customerValidatorService.validateCustomer(customerId);
     }
@@ -129,9 +129,8 @@ public class CustomerController {
 
     // DELETE - removes the customer's contact details
     @DeleteMapping(path = "/customer/{customerId}/removeContactDetail")
-    public void removeContactDetails(@PathVariable("customerId") Long customerId,
-                                     @PathVariable("contactId") Long contactId){
-        customerService.removeCustomerContactDetails(customerId, contactId);
+    public void removeContactDetails(@PathVariable("customerId") long customerId){
+        customerService.removeCustomerContactDetails(customerId);
     }
 
 }
