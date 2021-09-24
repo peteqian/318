@@ -7,6 +7,7 @@ import com.productgroup.exception.ProductFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -40,16 +41,17 @@ public class ProductDetailService {
         productDetailRepository.deleteById(productId);
     }
 
-    public void updateProductDetail(long id, String description, String comment){
-        ProductDetail productDetail = productDetailRepository.findById(id)
+    @Transactional
+    public void updateProductDetail(long id, ProductDetail productDetail){
+        ProductDetail reposProductDetail = productDetailRepository.findById(id)
                 .orElseThrow( ()-> new ProductFailedException("Cannot find the product description of id: " + id));
 
-        if (description != null && description.length() > 0){
-            productDetail.setDescription(description);
+        if (productDetail.getDescription() != null && productDetail.getDescription().length() > 0){
+            reposProductDetail.setDescription(productDetail.getDescription());
         }
 
-        if (comment != null && comment.length() > 0){
-            productDetail.setComment(comment);
+        if (productDetail.getComment() != null && productDetail.getComment().length() > 0){
+            reposProductDetail.setComment(productDetail.getComment());
         }
     }
 

@@ -94,9 +94,8 @@ public class ProductController {
     @PutMapping("/productDetail/{productDetailId}")
     public void updateProductDetail(
             @PathVariable("productDetailId")long productDetailId,
-            @PathVariable(required = false) String description,
-            @PathVariable(required = false) String comment){
-        productDetailService.updateProductDetail(productDetailId, description, comment);
+            @RequestBody ProductDetail productDetail){
+        productDetailService.updateProductDetail(productDetailId, productDetail);
     }
 
     @PutMapping("/product/{productId}/productDetail/{productDetailId}")
