@@ -5,8 +5,11 @@ import com.ordergroup.application.domain.OrdersEvent;
 import com.ordergroup.data.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private RestTemplate restTemplate;
 
     private ApplicationEventPublisher publisher;
 
@@ -33,9 +37,15 @@ public class OrderService {
                 .orElseThrow( () -> new RuntimeException("Cannot find a contact by the id: " + orderID));
     }
 
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        this.restTemplate = builder.build();
+    }
 
     public void create(long custID, String productName, long quanitity){
+
         // validate customer
+        String validateURL = ""
 
         // check product inventory
 
