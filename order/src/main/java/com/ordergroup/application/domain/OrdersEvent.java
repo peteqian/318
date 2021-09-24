@@ -17,12 +17,14 @@ public class OrdersEvent {
     private long id;
 
     private long orderID;
+    private String orderString;
 
     protected OrdersEvent() {}
 
-    public  OrdersEvent(long orderID){
+    public  OrdersEvent(Orders order){
         super();
         this.orderID = orderID;
+        this.orderString = order.toString();
     }
 
     public long getId(){ return id;}

@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderService {
@@ -43,11 +44,13 @@ public class OrderService {
     }
 
     public void create(long custID, String productName, long quanitity){
-
         // validate customer
-        String validateURL = ""
+        String validateURL = "http://localhost:8080/api/customer/validate="+custID;
+        Map<String, String> basicDetails = restTemplate.getForObject(validateURL, Map.class);
 
         // check product inventory
+        String checkInvURL = "http://localhost:8081/product/checkInventory/productName="+productName+"/quantity="+quanitity;
+        Double price = restTemplate.getForObject(checkInvURL, Double.class);
 
         // order Event
         //create an order
