@@ -2,6 +2,8 @@ package com.customergroup.application.serivce;
 
 import com.customergroup.domain.Customer;
 import com.customergroup.domain.ICustomerValidator;
+import com.customergroup.exception.BadRequestException;
+import com.customergroup.exception.ContactNotFoundException;
 import com.customergroup.exception.CustomerNotFoundException;
 import com.customergroup.infrastructure.repository.ContactRespository;
 import com.customergroup.infrastructure.repository.CustomerRespository;
@@ -30,6 +32,16 @@ public class CustomerValidatorService implements ICustomerValidator {
         boolean exists = customerRespository.existsById(customerId);
         if (!exists) {
             throw new CustomerNotFoundException("Company with id " + customerId + " does not exist!");
+        }
+
+        Customer customer = customerRespository.findById(customerId)
+                .orElseThrow(
+                        () -> new CustomerNotFoundException("Customer with id " + customerId + " does not exist!")
+                );
+
+        if (customer.getContact() == null){
+            throw new ContactNotFoundException("The customer with id: " + customerId +
+                    " does not have any contact details.");
         }
 
         Customer custFound = customerRespository.getById(customerId);

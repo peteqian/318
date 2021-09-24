@@ -33,7 +33,9 @@ public class ProductInventoryService implements IProductInventory {
         if (product.getStockQuantity() >= quantity) {
             return product.getPrice();
         } else {
-            throw new ProductFailedException("There is not enough stock for product: " + productName);
+            throw new ProductFailedException("There is not enough stock for product: " + productName
+            + ". The amount of available stock: " + product.getStockQuantity()
+            + ". The quantity you have requested for: " + quantity);
         }
     }
 }
