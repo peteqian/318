@@ -61,7 +61,7 @@ public class ProductController {
     @GetMapping("/product/checkInventory/productName={productName}/quantity={quantity}")
     public double checkInventory(@PathVariable("productName") String productName,
                                  @PathVariable("quantity") long quantity) {
-        return productStockService.checkInventory(productName, quantity);
+        return productInventory.checkInventory(productName, quantity);
     }
 
     /*
@@ -108,7 +108,7 @@ public class ProductController {
     @PutMapping("/product/{productName}/quantity/{quantity}")
     public void assignProductDetails(@PathVariable("productName") String productName,
                                      @PathVariable("quantity") long quantity){
-        productInventory.updateStock(productName, quantity);
+        productStockService.updateStock(productName, quantity);
     }
 
     /*
