@@ -24,9 +24,10 @@ public class OrderService {
     private ApplicationEventPublisher publisher;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, ApplicationEventPublisher publisher) {
+    public OrderService(OrderRepository orderRepository, ApplicationEventPublisher publisher, RestTemplateBuilder builder) {
         this.orderRepository = orderRepository;
         this.publisher = publisher;
+        this.restTemplate = builder.build();
     }
 
     public List<Orders> getOrders(){
@@ -38,28 +39,29 @@ public class OrderService {
                 .orElseThrow( () -> new RuntimeException("Cannot find a contact by the id: " + orderID));
     }
 
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        this.restTemplate = builder.build();
-    }
-
     public void create(long custID, String productName, long quanitity){
         // validate customer
         String validateURL = "http://localhost:8080/api/customer/validate="+custID;
-        Map<String, String> basicDetails = restTemplate.getForObject(validateURL, Map.class);
+        Map<String, String> cusBasicDetails = restTemplate.getForObject(validateURL, Map.class);
 
         // check product inventory
         String checkInvURL = "http://localhost:8081/product/checkInventory/productName="+productName+"/quantity="+quanitity;
-        Double price = restTemplate.getForObject(checkInvURL, Double.class);
+        Map<String, String> prodDetails = restTemplate.getForObject(checkInvURL, Map.class);
 
+        double totalPrice = (Double.parseDouble(prodDetails.get("Price")) * quanitity);
         // order Event
         //create an order
-        Orders order;
+        Orders order = new Orders(prodDetails.get("Supplier")
+                                , productName
+                                , quanitity
+                                , totalPrice
+                                , cusBasicDetails.get("address")
+                                , cusBasicDetails.get("phone"));
+
+        orderRepository.save(order);
         //order Event
         OrdersEvent ordersEvent = new OrdersEvent(order);
         publisher.publishEvent(ordersEvent);
-
-            // update product stock
     }
 
 }

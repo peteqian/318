@@ -26,14 +26,15 @@ public class ProductInventoryService implements IProductInventory {
     }
 
     @Override
-    public Map<Double, String> checkInventory(String productName, long quantity) {
+    public Map<String, String> checkInventory(String productName, long quantity) {
         Product product = productRepository.findProductByName(productName)
                 .orElseThrow(() -> new ProductFailedException("Product " + productName + " cannot be found."));
 
         System.out.print(product.getProductName() + " " + product.getStockQuantity());
 
-        Map<Double, String> data = new HashMap<>();
-        data.put(product.getPrice(), product.getSupplier());
+        Map<String, String> data = new HashMap<>();
+        data.put("Price", String.valueOf(product.getPrice()));
+        data.put("Supplier", product.getSupplier());
 
         if (product.getStockQuantity() >= quantity) {
             return data;

@@ -60,7 +60,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/checkInventory/productName={productName}/quantity={quantity}")
-    public Map<Double, String> checkInventory(@PathVariable("productName") String productName,
+    public Map<String, String> checkInventory(@PathVariable("productName") String productName,
                                               @PathVariable("quantity") long quantity) {
         return productInventory.checkInventory(productName, quantity);
     }

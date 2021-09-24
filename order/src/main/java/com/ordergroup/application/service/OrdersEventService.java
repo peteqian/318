@@ -22,6 +22,7 @@ public class OrdersEventService {
         ordersEventRepository.save(ordersEvent);
 
         //need to update stock
+        System.out.println("Recieved order event, no cap");
     }
 
 }
