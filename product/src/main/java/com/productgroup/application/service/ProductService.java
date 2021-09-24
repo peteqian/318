@@ -113,24 +113,4 @@ public class ProductService {
         }
     }
 
-    public double checkInventory(String productName, long quanitity) {
-        Product product = productRepository.findProductByName(productName)
-                .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
-
-        System.out.print(product.getProductName() + " " + product.getStockQuantity());
-
-        if(product.getStockQuantity() >= quanitity) {
-            return product.getPrice();
-        } else {
-            throw new ProductFailedException("There is not enough stock for product: " + productName);
-        }
-    }
-
-    @Transactional
-    public void updateStock(String productName, long quantity) {
-        Product product = productRepository.findProductByName(productName)
-                .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
-
-        product.setStockQuantity(product.getStockQuantity() - quantity);
-    }
 }
