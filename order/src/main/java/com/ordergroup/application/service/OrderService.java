@@ -9,8 +9,13 @@ import com.ordergroup.data.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
@@ -40,29 +45,39 @@ public class OrderService {
     }
 
     public void create(long custID, String productName, long quanitity){
-        // validate customer
-        String validateURL = "http://localhost:8080/api/customer/validate="+custID;
-        Customer customer = restTemplate.getForObject(validateURL, Customer.class);
 
-        // check product inventory
-        String checkInvURL = "http://localhost:8081/product/checkInventory/productName="+productName+"/quantity="+quanitity;
-        Product product = restTemplate.getForObject(checkInvURL, Product.class);
+        try {
+            // validate customer
+            String validateURL = "http://localhost:8080/api/customer/validate=" + custID;
+            Customer customer = restTemplate.getForObject(validateURL, Customer.class);
 
-        double totalPrice = (Double.parseDouble(product.getPrice()) * quanitity);
-        // order Event
-        //create an order
-        Orders order = new Orders(product.getSupplier()
-                                , productName
-                                , quanitity
-                                , totalPrice
-                                , customer.getAddress()
-                                , customer.getPhone()
-        );
+            // check product inventory
+            String checkInvURL = "http://localhost:8081/product/checkInventory/productName=" + productName + "/quantity=" + quanitity;
+            Product product = restTemplate.getForObject(checkInvURL, Product.class);
 
-        orderRepository.save(order);
-        //order Event
-        OrdersEvent ordersEvent = new OrdersEvent(order);
-        publisher.publishEvent(ordersEvent);
+            double totalPrice = (Double.parseDouble(product.getPrice()) * quanitity);
+            // order Event
+            //create an order
+            Orders order = new Orders(product.getSupplier()
+                    , productName
+                    , quanitity
+                    , totalPrice
+                    , customer.getAddress()
+                    , customer.getPhone()
+            );
+
+            orderRepository.save(order);
+            //order Event
+            OrdersEvent ordersEvent = new OrdersEvent(order);
+            publisher.publishEvent(ordersEvent);
+        }
+        catch (Exception e){
+            HttpHeaders repsonseHeaders = new HttpHeaders();
+            System.out.println("Message: " + e.getMessage());
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e
+            );
+        }
     }
 
 }
