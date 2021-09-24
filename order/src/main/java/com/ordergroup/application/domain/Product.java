@@ -14,6 +14,7 @@ public class Product {
             sequenceName = "product_sequence",
             allocationSize = 1
     )
+    private String productName;
     private String price;
     private String supplier;
 
@@ -31,4 +32,8 @@ public class Product {
     public String getSupplier(){return supplier;}
 
     public void setSupplier(String supplier){this.supplier = supplier;}
+
+    public String getProductName(){return productName;}
+
+    public void setProductName(String productName) {this.productName=productName;}
 }

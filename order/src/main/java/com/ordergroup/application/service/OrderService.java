@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -41,7 +42,22 @@ public class OrderService {
 
     public Orders getOrder(long orderID){
         return orderRepository.findById(orderID)
-                .orElseThrow( () -> new RuntimeException("Cannot find a contact by the id: " + orderID));
+                .orElseThrow( () -> new RuntimeException("Cannot find a order by the id: " + orderID));
+    }
+
+    public Customer getCustomerInfo(long orderID){
+        Optional<Orders> o = orderRepository.findById(orderID);
+        Customer cus = new Customer(o.get().getCusAddress(), o.get().getCusPhoneNum());
+        return cus;
+    }
+
+    public Product getProductInfo(long orderID){
+        Optional<Orders> o = orderRepository.findById(orderID);
+        String prodName = o.get().getProductName();
+        String getProdURL = "http://localhost:8081/product/name=" + prodName;
+        Product prod = restTemplate.getForObject(getProdURL, Product.class);
+        prod.setProductName(prodName);
+        return prod;
     }
 
     public void create(long custID, String productName, long quanitity){
@@ -72,7 +88,6 @@ public class OrderService {
             publisher.publishEvent(ordersEvent);
         }
         catch (Exception e){
-            HttpHeaders repsonseHeaders = new HttpHeaders();
             System.out.println("Message: " + e.getMessage());
             throw new ResponseStatusException(
                     HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e
