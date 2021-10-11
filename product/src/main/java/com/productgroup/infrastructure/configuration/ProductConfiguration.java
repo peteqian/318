@@ -19,7 +19,7 @@ public class ProductConfiguration {
                     "Water",
                     1.05,
                     10,
-                    "coca-cola"
+                    "Coca-Cola"
             );
             Product productTwo = new Product(
                     "Food",
@@ -28,9 +28,36 @@ public class ProductConfiguration {
                     5,
                     "Random-street-vendor"
             );
+            Product productThree = new Product(
+                    "Hardware",
+                    "Nvidia RTX 3080",
+                    2199.99,
+                    1000,
+                    "PLE Computers"
+            );
+
+            Product productFour = new Product(
+                    "Hardware",
+                    "AMD Ryzen R5 5600X",
+                    469.00,
+                    1000,
+                    "PC Case Gear"
+            );
+
+            Product productFive = new Product(
+                    "Software",
+                    "Windows 2000 - Home",
+                    1.00,
+                    10000000,
+                    "Microsoft"
+            );
+
 
             productRepository.save(productOne);
             productRepository.save(productTwo);
+            productRepository.save(productThree);
+            productRepository.save(productFour);
+            productRepository.save(productFive);
 
             ProductDetail productDetailOne = new ProductDetail(
                     "It is a fluid",
@@ -42,8 +69,28 @@ public class ProductConfiguration {
                     "Not from dominos."
             );
 
+            ProductDetail productDetailThree = new ProductDetail(
+                    "Is very hard to get.",
+                    "Usually need to find on black market."
+            );
+
+            ProductDetail productDetailFour = new ProductDetail(
+                    "A very rare silicon material.",
+                    "Usually need to find on black market."
+            );
+
+            ProductDetail productDetailFive = new ProductDetail(
+                    "A Microsoft product that contains the leading-edge " +
+                            "technology.",
+                    "Usually need to find on black market."
+            );
+
             productDetailRepository.save(productDetailOne);
             productDetailRepository.save(productDetailTwo);
+            productDetailRepository.save(productDetailThree);
+            productDetailRepository.save(productDetailFour);
+            productDetailRepository.save(productDetailFive);
+
         };
     }
 }
