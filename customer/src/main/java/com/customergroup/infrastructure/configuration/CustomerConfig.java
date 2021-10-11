@@ -53,6 +53,14 @@ public class CustomerConfig {
                     "10400 Northeast Fourth Street Floor 14, Bellevue, WA 98004 USA",
                     "USA");
 
+            Customer microsoft = new Customer("Microsoft",
+                    "Level 24-30, 1 Denison Street, North Sydney, NSW, 2060",
+                    "USA");
+
+            Customer google = new Customer("Google",
+                    "Wharf 7, 58 Pirrama Rd, Pyrmont NSW 2009",
+                    "Australia");
+
             Contact gabe = new Contact("Gabe Newell",
                     "12-12-12",
                     "valve@gmail.com",
@@ -71,19 +79,37 @@ public class CustomerConfig {
             Contact timSweeney = new Contact("Tim Sweeney",
                     "123-123-123",
                     "epic@apple.killer.com",
-                    "USA");
+                    "CEO");
 
-            apple.setContact(peter);
-            peter.setCustomer(apple);
+            Contact johnMcAfee = new Contact("John McAfee",
+                    "420-Blaze-It",
+                    "john.mcafee@mcafeesolutions.com",
+                    "CEO");
 
-            bravo.setContact(pineapple);
-            pineapple.setCustomer(bravo);
+            Contact elonMusk = new Contact("Elon Musk",
+                    "1234567890",
+                    "elon.musk@tesla.com",
+                    "CEO");
 
-            valve.setContact(gabe);
-            gabe.setCustomer(valve);
+            Contact scottHerford = new Contact("Scott Herford",
+                    "+61-420-420-420",
+                    "herford@yahoo.com.au",
+                    "Documentation");
 
-            epic.setContact(timSweeney);
-            timSweeney.setCustomer(epic);
+            Contact victorYing = new Contact("Victor Ying",
+                    "+61-420-420-420",
+                    "ying@yahoo.com.au",
+                    "Documentation");
+
+            Contact larryPage = new Contact("Larry Page",
+                    "12345667890",
+                    "google@google.com",
+                    "Founder");
+
+            Contact billGates = new Contact("Bill Gates",
+                    "12354667890",
+                    "gates@microsoft.com",
+                    "Founder");
 
             customerRespository.save(apple);
             customerRespository.save(bravo);
@@ -93,11 +119,19 @@ public class CustomerConfig {
             customerRespository.save(epic);
             customerRespository.save(tesla);
             customerRespository.save(valve);
+            customerRespository.save(google);
+            customerRespository.save(microsoft);
 
-            contactRespository.save(gabe);
             contactRespository.save(peter);
+            contactRespository.save(scottHerford);
+            contactRespository.save(victorYing);
             contactRespository.save(pineapple);
+            contactRespository.save(johnMcAfee);
             contactRespository.save(timSweeney);
+            contactRespository.save(elonMusk);
+            contactRespository.save(gabe);
+            contactRespository.save(larryPage);
+            contactRespository.save(billGates);
 
         };
     }
