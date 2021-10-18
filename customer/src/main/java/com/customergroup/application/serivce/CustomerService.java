@@ -47,6 +47,13 @@ public class CustomerService  {
                 .orElseThrow(()-> new RuntimeException("Cannot find the company name: " + companyName));
     }
 
+    public Customer getCustomerByPhone(String phone){
+        Contact contact =
+                contactRespository.findContactByPhone(phone);
+        Customer customer = contact.getCustomer();
+        return customer;
+    }
+
     public void addCustomer(Customer customer){
         boolean customerByCompanyName
                 = customerRespository.selectExistingCompany(customer.getCompanyName());

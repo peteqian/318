@@ -21,4 +21,8 @@ public interface ContactRespository
             "WHERE lower(s.email) = ?1"
     )
     Boolean selectExistsEmail(String email);
+
+    @Query("SELECT s FROM Contact s WHERE lower(s.phone) = ?1")
+    Contact findContactByPhone(String phone);
+
 }

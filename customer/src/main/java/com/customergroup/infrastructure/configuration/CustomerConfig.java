@@ -62,52 +62,52 @@ public class CustomerConfig {
                     "Australia");
 
             Contact gabe = new Contact("Gabe Newell",
-                    "12-12-12",
+                    "+61-111-111-111",
                     "valve@gmail.com",
                     "CEO");
 
             Contact peter = new Contact("Peter",
-                    "+61-412-123-456",
+                    "+61-111-111-112",
                     "peter@gmail.com",
                     "positionOne");
 
             Contact pineapple = new Contact("Pineapple",
-                    "+61-412-123-456",
+                    "+61-111-111-113",
                     "pineapple@gmail.com",
                     "positionTwo");
 
             Contact timSweeney = new Contact("Tim Sweeney",
-                    "123-123-123",
+                    "+61-111-111-114",
                     "epic@apple.killer.com",
                     "CEO");
 
             Contact johnMcAfee = new Contact("John McAfee",
-                    "420-Blaze-It",
+                    "+61-111-111-115",
                     "john.mcafee@mcafeesolutions.com",
                     "CEO");
 
             Contact elonMusk = new Contact("Elon Musk",
-                    "1234567890",
+                    "+61-111-111-116",
                     "elon.musk@tesla.com",
                     "CEO");
 
             Contact scottHerford = new Contact("Scott Herford",
-                    "+61-420-420-420",
+                    "+61-111-111-117",
                     "herford@yahoo.com.au",
                     "Documentation");
 
             Contact victorYing = new Contact("Victor Ying",
-                    "+61-420-420-420",
+                    "+61-111-111-118",
                     "ying@yahoo.com.au",
                     "Documentation");
 
             Contact larryPage = new Contact("Larry Page",
-                    "12345667890",
+                    "+61-111-111-119",
                     "google@google.com",
                     "Founder");
 
             Contact billGates = new Contact("Bill Gates",
-                    "12354667890",
+                    "+61-111-111-120",
                     "gates@microsoft.com",
                     "Founder");
 

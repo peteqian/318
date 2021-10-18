@@ -46,6 +46,12 @@ public class CustomerController {
         return customerService.getCustomer(customerCompanyName);
     }
 
+    @GetMapping(path = "/customer/phone={customerPhone}")
+    public Customer getCustomerByPhone(@PathVariable("customerPhone")
+                                            String customerPhone){
+        return customerService.getCustomerByPhone(customerPhone);
+    }
+
     @GetMapping(path = "/contact")
     public List<Contact> getContacts(){
         return contactService.getContacts();
