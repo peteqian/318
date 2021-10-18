@@ -47,7 +47,7 @@ public class CustomerController {
     }
 
     @GetMapping(path = "/customer/phone={customerPhone}")
-    public Customer getCustomerByPhone(@PathVariable("customerPhone")
+    public Map<String, String> getCustomerByPhone(@PathVariable("customerPhone")
                                             String customerPhone){
         return customerService.getCustomerByPhone(customerPhone);
     }
@@ -65,6 +65,12 @@ public class CustomerController {
     @GetMapping(path = "/customer/validate={customerId}")
     public Map<String, String> validateCustomer(@PathVariable("customerId") long customerId){
         return customerValidatorService.validateCustomer(customerId);
+    }
+
+    @GetMapping(path = "/contact/customer/{customerId}")
+    public Contact getContactByCustomerId(@PathVariable("customerId")
+                                          long customerId){
+        return customerService.getContactByCustomerId(customerId);
     }
 
     /*

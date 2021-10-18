@@ -46,16 +46,21 @@ public class OrderService {
 
     public Customer getCustomerInfo(long orderID){
         /*
-        Optional<Orders> o = orderRepository.findById(orderID);
-        Customer cus = new Customer(o.get().getCusAddress(),
-                o.get().getCusPhoneNum());
-        return cus;
-        */
+        2 Ways to get this method done.
+        1. Create a Contact Class and call for 2 API endpoints, one refers to
+         customer and one to contact.
+
+        2. Call for an API endpoint to Customer where the API returns a MAP
+        containing
+        key:            value:
+        address         something
+        phone           something
+         */
 
         Orders orderObj = orderRepository.findById(orderID).orElseThrow(
                 () -> new RuntimeException("Cannot find a order by the id: "
-                        + orderID)
-        );
+                        + orderID));
+
         String customerNum = orderObj.getCusPhoneNum();
         String getCustomer =
                 "http://localhost:8080/api/customer/phone=" + customerNum;
@@ -66,11 +71,13 @@ public class OrderService {
     }
 
     public Product getProductInfo(long orderID){
-        Optional<Orders> o = orderRepository.findById(orderID);
-        String prodName = o.get().getProductName();
+        Orders orderObj = orderRepository.findById(orderID).orElseThrow(
+                () -> new RuntimeException("Cannot find a order by the id: "
+                        + orderID)
+        );
+        String prodName = orderObj.getProductName();
         String getProdURL = "http://localhost:8081/product/name=" + prodName;
         Product prod = restTemplate.getForObject(getProdURL, Product.class);
-        prod.setProductName(prodName);
         return prod;
     }
 

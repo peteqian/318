@@ -24,5 +24,4 @@ public interface ContactRespository
 
     @Query("SELECT s FROM Contact s WHERE lower(s.phone) = ?1")
     Contact findContactByPhone(String phone);
-
 }

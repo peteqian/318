@@ -1,9 +1,12 @@
 package com.ordergroup.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Customer {
+public class Customer implements Serializable {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -14,6 +17,9 @@ public class Customer {
             sequenceName = "customer_sequence",
             allocationSize = 1
     )
+
+    // Looks for address property within nested property of JSON object
+    @JsonProperty("address")
     private String address;
     private String phone;
 
