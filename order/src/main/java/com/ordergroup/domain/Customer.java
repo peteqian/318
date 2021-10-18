@@ -18,8 +18,7 @@ public class Customer implements Serializable {
             allocationSize = 1
     )
 
-    // Looks for address property within nested property of JSON object
-    @JsonProperty("address")
+    private Long id;
     private String address;
     private String phone;
 
@@ -30,6 +29,14 @@ public class Customer implements Serializable {
         this.phone = phone;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getAddress(){return address;}
 
     public void setAddress(String address){this.address = address;}
@@ -37,4 +44,13 @@ public class Customer implements Serializable {
     public String getPhone(){return phone;}
 
     public void setPhone(String phone){this.phone = phone;}
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }

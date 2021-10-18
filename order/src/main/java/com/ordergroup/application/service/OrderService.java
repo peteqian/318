@@ -4,7 +4,7 @@ import com.ordergroup.domain.Product;
 import com.ordergroup.domain.Customer;
 import com.ordergroup.domain.Orders;
 import com.ordergroup.domain.OrdersEvent;
-import com.ordergroup.infrastructure.OrderRepository;
+import com.ordergroup.infrastructure.repository.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderService {

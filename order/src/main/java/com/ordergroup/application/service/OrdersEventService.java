@@ -2,7 +2,7 @@ package com.ordergroup.application.service;
 
 import com.ordergroup.domain.Orders;
 import com.ordergroup.domain.OrdersEvent;
-import com.ordergroup.infrastructure.OrdersEventRepository;
+import com.ordergroup.infrastructure.repository.OrdersEventRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;

@@ -1,4 +1,4 @@
-package com.ordergroup.infrastructure;
+package com.ordergroup.infrastructure.repository;
 
 import com.ordergroup.domain.OrdersEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
