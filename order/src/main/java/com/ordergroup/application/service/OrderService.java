@@ -22,11 +22,12 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private RestTemplate restTemplate;
-
     private ApplicationEventPublisher publisher;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, ApplicationEventPublisher publisher, RestTemplateBuilder builder) {
+    public OrderService(OrderRepository orderRepository,
+                        ApplicationEventPublisher publisher,
+                        RestTemplateBuilder builder) {
         this.orderRepository = orderRepository;
         this.publisher = publisher;
         this.restTemplate = builder.build();
@@ -38,13 +39,30 @@ public class OrderService {
 
     public Orders getOrder(long orderID){
         return orderRepository.findById(orderID)
-                .orElseThrow( () -> new RuntimeException("Cannot find a order by the id: " + orderID));
+                .orElseThrow( () ->
+                        new RuntimeException("Cannot find a order by the id: "
+                                + orderID));
     }
 
     public Customer getCustomerInfo(long orderID){
+        /*
         Optional<Orders> o = orderRepository.findById(orderID);
-        Customer cus = new Customer(o.get().getCusAddress(), o.get().getCusPhoneNum());
+        Customer cus = new Customer(o.get().getCusAddress(),
+                o.get().getCusPhoneNum());
         return cus;
+        */
+
+        Orders orderObj = orderRepository.findById(orderID).orElseThrow(
+                () -> new RuntimeException("Cannot find a order by the id: "
+                        + orderID)
+        );
+        String customerNum = orderObj.getCusPhoneNum();
+        String getCustomer =
+                "http://localhost:8080/api/customer/phone=" + customerNum;
+        Customer customer = restTemplate.getForObject(getCustomer,
+                Customer.class);
+        return customer;
+
     }
 
     public Product getProductInfo(long orderID){
