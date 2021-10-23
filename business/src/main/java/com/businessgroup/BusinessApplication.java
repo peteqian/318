@@ -1,4 +1,4 @@
-package businesgroup.business;
+package com.businessgroup;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

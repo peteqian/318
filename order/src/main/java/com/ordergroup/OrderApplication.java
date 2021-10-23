@@ -2,6 +2,8 @@ package com.ordergroup;
 
 
 import com.ordergroup.domain.Customer;
+import com.ordergroup.domain.Orders;
+import com.ordergroup.domain.OrdersEvent;
 import com.ordergroup.domain.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,16 +13,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
+import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @SpringBootApplication
 public class OrderApplication {
@@ -75,55 +75,74 @@ public class OrderApplication {
 		1.7 Convert into raw body in JSON format.
 		2. Send the OrdersEvent to Kafka
 		*/
+		Customer[] customerList = getCustomerList(restTemplate);
+		Product[] productList = getProductList(restTemplate);
+		AtomicInteger counter = new AtomicInteger(1);
+
+		System.out.println("The length of the customer array is: "
+				+ customerList.length);
+
+		System.out.println("The length of the product array is: "
+				+ productList.length);
+
 		return args -> {
-			Customer[] customerList = getCustomerList(restTemplate);
-			Product[] productList = getProductList(restTemplate);
 
-			System.out.println("The length of the customer array is: "
-					+ customerList.length);
-
-			System.out.println("The length of the product array is: "
-					+ productList.length);
-
-			// Create random variables
-			Long randCustomerId = ThreadLocalRandom.current().nextLong(customerList.length);
-			int randProductId = (int) Math.random() * productList.length+1;
-			Long randQuantity = ThreadLocalRandom.current().nextLong(10);
-
-			String rawbody =
-					"{"
-					+"\"custID\": \"" + randCustomerId+ "\","
-					+ "\"productName\": \"" + productList[randProductId].getProductName() + "\","
-					+ "\"quantity\": \"" + 1 + "\""
-					+ "}";
-
-			System.out.println("Body is: " + rawbody);
-
-			// Create HTTP Header
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(MediaType.APPLICATION_JSON);
-			// Create HTTP Enttity
-			HttpEntity<String> entity = new HttpEntity<String>(rawbody,
-					headers);
-
-			System.out.println("Sending to URL");
-			URI values = restTemplate.postForLocation(PREFIX_ORDER_URL, entity);
-			System.out.println("Path being sent to: " + values.getPath());
-
-			/*
 			try{
 				while(!Thread.currentThread().isInterrupted()){
-					OrdersEvent ordersEvent =
-							restTemplate.getForObject(PREFIX_ORDER_URL,
-									OrdersEvent.class);
+					try{
+						// Create variables for randomising numbers
+						Long randCustomerId =
+								ThreadLocalRandom.current().nextLong(customerList.length) + 1;
+						Integer randProductId =
+								ThreadLocalRandom.current().nextInt(productList.length);
+						Long randQuantity =
+								ThreadLocalRandom.current().nextLong(1, 10);
+
+
+						// Create HTTP Header
+						MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+						headers.add("Content-Type", "application/json");
+
+						// Create raw body
+						HashMap<String, String> bodyParam = new HashMap<>();
+						bodyParam.put("custID", randCustomerId.toString());
+						bodyParam.put("productName",
+								productList[randProductId].getProductName());
+						bodyParam.put("quantity", randQuantity.toString());
+
+						// Create HTTP Enttity
+						HttpEntity entity = new HttpEntity(bodyParam, headers);
+
+						// HTTP Response Entity
+						ResponseEntity<Class> result = restTemplate.exchange(PREFIX_ORDER_URL,
+								HttpMethod.POST,entity, Class.class);
+						log.info(result.toString());
+					} catch (Exception e){
+						// Log the bad request
+						log.info(e.toString());
+					}
+
+					// Get object and map accordingly to OrdersEvent class
+
+					String url = PREFIX_ORDER_URL + "/" + counter;
+					System.out.println("Le url is: " + url);
+
+					Orders ordersEvent = restTemplate.getForObject(url,
+							Orders.class);
+
+					System.out.println("Order made: " + ordersEvent.toString());
 					assert ordersEvent != null;
 					log.info(ordersEvent.toString());
 
 					streamBridge.send("appliance-outboard", ordersEvent);
-					Thread.sleep(2000);
+					counter.getAndIncrement();
+
+					// Set to 10s just because I didn't want to spam server
+					Thread.sleep(10000);
 				}
+
 			} catch(InterruptedException ignored){}
-			*/
+
 		};
 
 	}

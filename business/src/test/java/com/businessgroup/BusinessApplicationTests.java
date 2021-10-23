@@ -1,4 +1,4 @@
-package businesgroup.business;
+package com.businessgroup;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

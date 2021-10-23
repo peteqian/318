@@ -94,17 +94,21 @@ public class OrderService {
             double totalPrice = (Double.parseDouble(product.getPrice()) * quanitity);
             // order Event
             //create an order
-            Orders order = new Orders(product.getSupplier()
-                    , productName
-                    , quanitity
-                    , totalPrice
-                    , customer.getAddress()
-                    , customer.getPhone()
-            );
+            Orders order = new Orders(product.getSupplier(),
+                    productName,
+                    quanitity,
+                    totalPrice,
+                    customer.getAddress(),
+                    customer.getPhone());
 
             orderRepository.save(order);
-            //order Event
+
+            System.out.println("Saving the order: " + order);
+
             OrdersEvent ordersEvent = new OrdersEvent(order);
+            // is it possible the ordersEvent is not attaching anything?
+            System.out.println("Saving the ordersEvent in OrdersService: " + ordersEvent);
+            System.out.println("Publish the event");
             publisher.publishEvent(ordersEvent);
         }
         catch (Exception e){

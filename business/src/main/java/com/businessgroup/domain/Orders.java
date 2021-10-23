@@ -1,4 +1,4 @@
-package com.ordergroup.domain;
+package com.businessgroup.domain;
 
 import javax.persistence.*;
 

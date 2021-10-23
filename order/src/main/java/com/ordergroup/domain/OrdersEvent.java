@@ -27,9 +27,13 @@ public class OrdersEvent {
         this.orderString = order.toString();
     }
 
-    public long getId(){ return id;}
+    public long getId(){
+        return id;
+    }
 
-    public long getOrderID(){ return orderID;}
+    public long getOrderID(){
+        return orderID;
+    }
 
     public void setId(long nId){
         id = nId;
@@ -39,4 +43,12 @@ public class OrdersEvent {
         orderID = nOrderId;
     }
 
+    @Override
+    public String toString() {
+        return "OrdersEvent{" +
+                "id=" + id +
+                ", orderID=" + orderID +
+                ", orderString='" + orderString + '\'' +
+                '}';
+    }
 }

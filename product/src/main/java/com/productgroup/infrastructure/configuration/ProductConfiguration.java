@@ -18,14 +18,14 @@ public class ProductConfiguration {
                     "Beverage",
                     "Water",
                     1.05,
-                    10,
+                    500,
                     "Coca-Cola"
             );
             Product productTwo = new Product(
                     "Food",
                     "Hotdog",
                     10.00,
-                    5,
+                    500,
                     "Random-street-vendor"
             );
             Product productThree = new Product(
