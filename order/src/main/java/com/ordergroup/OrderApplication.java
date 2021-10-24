@@ -134,7 +134,7 @@ public class OrderApplication {
 					assert ordersEvent != null;
 					log.info(ordersEvent.toString());
 
-					streamBridge.send("appliance-outboard", ordersEvent);
+					streamBridge.send("order-outbound", ordersEvent);
 					counter.getAndIncrement();
 
 					// Set to 10s just because I didn't want to spam server

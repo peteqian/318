@@ -18,7 +18,7 @@ import java.util.function.Function;
 @Configuration
 public class OrderStreamProcessing {
 
-    public final static String STATE_STORE = "my-store";
+    public final static String STATE_STORE = "order-business";
 
     @Bean
     public Function<KStream<?, Orders>, KStream<String, OrderQuantity>> process(){
