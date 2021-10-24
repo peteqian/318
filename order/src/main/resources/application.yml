@@ -15,4 +15,4 @@ spring.cloud.stream:
           default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
           default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
           spring.json.trusted.packages: '*'
-          spring.json.value.default.type: com.ordergroup.domain.OrdersEvent
+          spring.json.value.default.type: com.ordergroup.domain.Orders
