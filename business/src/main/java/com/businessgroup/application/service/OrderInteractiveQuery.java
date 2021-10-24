@@ -1,6 +1,7 @@
 package com.businessgroup.application.service;
 
 import com.businessgroup.domain.CustomerProduct;
+import com.businessgroup.domain.TotalOrderValueCustomer;
 import com.businessgroup.exception.ProductNotFoundException;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.state.KeyValueIterator;
@@ -54,6 +55,20 @@ public class OrderInteractiveQuery {
         return productList;
     }
 
+    public double getTotalOrderValueByCustomerID(String customerPhone){
+        double totalOrderValue = 0;
+        KeyValueIterator<String, TotalOrderValueCustomer> all = totalOrderValue().all();
+        while(all.hasNext()){
+            TotalOrderValueCustomer customerProduct = all.next().value;
+            String custPhone = customerProduct.getPhone();
+            double price = customerProduct.getTotalPrice();
+            if(custPhone.equals(customerPhone)){
+                totalOrderValue += price;
+            }
+        }
+        return totalOrderValue;
+    }
+
     private ReadOnlyKeyValueStore<String, Long> keyValueStore(){
         return this.interactiveQueryService.getQueryableStore(
                 OrderStreamProcessing.STATE_STORE,
@@ -64,6 +79,13 @@ public class OrderInteractiveQuery {
     private ReadOnlyKeyValueStore<String, CustomerProduct> customerProduct(){
         return this.interactiveQueryService.getQueryableStore(
                 OrderStreamProcessing.CUSTOMER_STORE,
+                QueryableStoreTypes.keyValueStore()
+        );
+    }
+
+    private ReadOnlyKeyValueStore<String, TotalOrderValueCustomer> totalOrderValue(){
+        return this.interactiveQueryService.getQueryableStore(
+                OrderStreamProcessing.TOTAL_VALUE_STORE,
                 QueryableStoreTypes.keyValueStore()
         );
     }

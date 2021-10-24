@@ -3,6 +3,7 @@ package com.businessgroup.application.service;
 import com.businessgroup.domain.CustomerProduct;
 import com.businessgroup.domain.OrderQuantity;
 import com.businessgroup.domain.Orders;
+import com.businessgroup.domain.TotalOrderValueCustomer;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.utils.Bytes;
@@ -26,6 +27,7 @@ public class OrderStreamProcessing {
 
     public final static String STATE_STORE = "order-business";
     public final static String CUSTOMER_STORE = "customer-product";
+    public final static String TOTAL_VALUE_STORE = "total-customer";
 
     @Bean
     public Function<KStream<?, Orders>, KStream<String, OrderQuantity>> process(){
@@ -52,6 +54,27 @@ public class OrderStreamProcessing {
                                     withValueSerde(customerProductSerde())
             );
 
+            inputStream.map((k, v) -> {
+
+                double totalPrice = v.getTotalPrice();
+                String custPhoneNum = v.getCusPhoneNum();
+                String custAddress = v.getCusAddress();
+
+                TotalOrderValueCustomer customerProductObj = new TotalOrderValueCustomer();
+                customerProductObj.setTotalPrice(totalPrice);
+                customerProductObj.setPhone(custPhoneNum);
+                customerProductObj.setAddress(custAddress);
+
+                String new_key = custPhoneNum + custAddress;
+                return KeyValue.pair(new_key, customerProductObj);
+            }).toTable(
+                    Materialized.<String, TotalOrderValueCustomer, KeyValueStore<Bytes, byte[]>>
+                                    as(TOTAL_VALUE_STORE).
+                            withKeySerde(Serdes.String()).
+                            // a custom value serde for this state store
+                                    withValueSerde(totalValueProductSerde())
+            );
+
             KTable<String, Long> ordersKTable = inputStream.
                     mapValues(Orders::getProductName).
                     groupBy((keyIgnored, value) -> value).
@@ -75,6 +98,18 @@ public class OrderStreamProcessing {
 
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.businessgroup.domain.CustomerProduct");
+        configProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+
+        customerProductJsonSerde.configure(configProps, false);
+
+        return customerProductJsonSerde;
+    }
+
+    public Serde<TotalOrderValueCustomer> totalValueProductSerde(){
+        JsonSerde<TotalOrderValueCustomer> customerProductJsonSerde = new JsonSerde<>();
+
+        Map<String, Object> configProps = new HashMap<>();
+        configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.businessgroup.domain.TotalOrderValueCustomer");
         configProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
 
         customerProductJsonSerde.configure(configProps, false);

@@ -29,6 +29,9 @@ public class OrderQueryController {
         return orderInteractiveQuery.getAllProductsByCustomerID(customerPhone);
     }
 
-
+    @GetMapping("/business/{customerPhone}/total_price")
+    Double getTotalOrderValueByCustomerPhone(@PathVariable String customerPhone){
+        return orderInteractiveQuery.getTotalOrderValueByCustomerID(customerPhone);
+    }
 
 }
