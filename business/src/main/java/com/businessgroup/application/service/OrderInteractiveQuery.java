@@ -40,12 +40,16 @@ public class OrderInteractiveQuery {
         }
     }
 
-    public List<String> getAllProductsByCustomerID(Long customerID){
+    public List<String> getAllProductsByCustomerID(String customerPhone){
         List<String> productList = new ArrayList<>();
         KeyValueIterator<String, CustomerProduct> all = customerProduct().all();
         while(all.hasNext()){
-            String productName = all.next().value.getProduct();
-            productList.add(productName);
+            CustomerProduct customerProduct = all.next().value;
+            String productName = customerProduct.getProduct();
+            String custPhone = customerProduct.getPhone();
+            if(custPhone.equals(customerPhone)){
+                productList.add(productName);
+            }
         }
         return productList;
     }

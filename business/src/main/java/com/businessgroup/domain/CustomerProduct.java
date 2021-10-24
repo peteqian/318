@@ -3,8 +3,8 @@ package com.businessgroup.domain;
 public class CustomerProduct {
 
     private String product;
-    private String address;
     private String phone;
+    private String address;
 
     public CustomerProduct() {}
 
@@ -16,14 +16,6 @@ public class CustomerProduct {
         this.product = product;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -32,12 +24,20 @@ public class CustomerProduct {
         this.phone = phone;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "CustomerProduct{" +
                 "product='" + product + '\'' +
-                ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

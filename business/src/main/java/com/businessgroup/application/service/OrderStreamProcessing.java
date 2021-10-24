@@ -32,23 +32,24 @@ public class OrderStreamProcessing {
 
         return inputStream -> {
 
-            inputStream.map((key, value) -> {
+            inputStream.map((k, v) -> {
+                String productName = v.getProductName();
+                String custPhoneNum = v.getCusPhoneNum();
+                String custAddress = v.getCusAddress();
 
-                String productName = value.getProductName();
-                String phone = value.getCusPhoneNum();
-                String address = value.getCusAddress();
+                CustomerProduct customerProductObj = new CustomerProduct();
+                customerProductObj.setProduct(productName);
+                customerProductObj.setPhone(custPhoneNum);
+                customerProductObj.setAddress(custAddress);
 
-                CustomerProduct customerProduct = new CustomerProduct();
-                customerProduct.setProduct(productName);
-                customerProduct.setPhone(phone);
-                customerProduct.setAddress(address);
-
-                String new_key = phone + address + productName;
-                return KeyValue.pair(new_key, productName);
-
+                String new_key = custPhoneNum + custAddress + productName;
+                return KeyValue.pair(new_key, customerProductObj);
             }).toTable(
-                    Materialized.<String, CustomerProduct, KeyValueStore<Bytes, byte[]>>as(CUSTOMER_STORE).
-                            withKeySerde(Serdes.String()).withValueSerde(customerProductSerde())
+                    Materialized.<String, CustomerProduct, KeyValueStore<Bytes, byte[]>>
+                                    as(CUSTOMER_STORE).
+                            withKeySerde(Serdes.String()).
+                            // a custom value serde for this state store
+                                    withValueSerde(customerProductSerde())
             );
 
             KTable<String, Long> ordersKTable = inputStream.

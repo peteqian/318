@@ -24,6 +24,11 @@ public class OrderQueryController {
         return orderInteractiveQuery.getProductQuantity(productName);
     }
 
+    @GetMapping("/business/{customerPhone}/product")
+    List<String> getAllProductByCustomerPhone(@PathVariable String customerPhone){
+        return orderInteractiveQuery.getAllProductsByCustomerID(customerPhone);
+    }
+
 
 
 }
