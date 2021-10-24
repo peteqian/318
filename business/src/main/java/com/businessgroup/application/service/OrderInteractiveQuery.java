@@ -1,5 +1,8 @@
 package com.businessgroup.application.service;
 
+import com.businessgroup.domain.CustomerProduct;
+import com.businessgroup.exception.ProductNotFoundException;
+import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.state.KeyValueIterator;
 import org.apache.kafka.streams.state.QueryableStoreTypes;
 import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
@@ -28,9 +31,35 @@ public class OrderInteractiveQuery {
         return productList;
     }
 
+    public long getProductQuantity(String productName){
+        if (keyValueStore().get(productName) != null){
+            return keyValueStore().get(productName);
+        } else {
+            throw new ProductNotFoundException("The product '" + productName +
+                    "' does not exist.");
+        }
+    }
+
+    public List<String> getAllProductsByCustomerID(Long customerID){
+        List<String> productList = new ArrayList<>();
+        KeyValueIterator<String, CustomerProduct> all = customerProduct().all();
+        while(all.hasNext()){
+            String productName = all.next().value.getProduct();
+            productList.add(productName);
+        }
+        return productList;
+    }
+
     private ReadOnlyKeyValueStore<String, Long> keyValueStore(){
         return this.interactiveQueryService.getQueryableStore(
                 OrderStreamProcessing.STATE_STORE,
+                QueryableStoreTypes.keyValueStore()
+        );
+    }
+
+    private ReadOnlyKeyValueStore<String, CustomerProduct> customerProduct(){
+        return this.interactiveQueryService.getQueryableStore(
+                OrderStreamProcessing.CUSTOMER_STORE,
                 QueryableStoreTypes.keyValueStore()
         );
     }

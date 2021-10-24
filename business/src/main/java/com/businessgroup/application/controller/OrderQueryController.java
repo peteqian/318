@@ -19,4 +19,11 @@ public class OrderQueryController {
         return orderInteractiveQuery.getAllProductList();
     }
 
+    @GetMapping("/business/{productName}/quantity")
+    long getProductQuantityByName(@PathVariable String productName){
+        return orderInteractiveQuery.getProductQuantity(productName);
+    }
+
+
+
 }

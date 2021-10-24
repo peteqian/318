@@ -3,7 +3,7 @@ spring.cloud.stream.bindings:
   process-in-0:
     destination: orderEvents-topic
   process-out-0:
-    destination: orders-topic
+    destination: Quantity-Summary-topic
 spring.cloud.stream.kafka.streams.binder:
   brokers: localhost:9092
   configuration:
