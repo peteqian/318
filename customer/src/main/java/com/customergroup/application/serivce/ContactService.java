@@ -33,9 +33,16 @@ public class ContactService {
     public void addContact(Contact contact){
 
         Boolean contactEmail = contactRespository.selectExistsEmail(contact.getEmail());
+        Boolean contactPhone = contactRespository.selectExistsPhone(contact.getPhone());
+
         if(contactEmail){
             throw new BadRequestException("Email " + contact.getEmail() + " already exists!");
         }
+
+        if(contactPhone){
+            throw new BadRequestException("Phone number " + contact.getPhone() + " already exists!");
+        }
+
         contactRespository.save(contact);
     }
 

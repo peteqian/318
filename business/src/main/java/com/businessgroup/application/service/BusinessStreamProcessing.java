@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Configuration
-public class OrderStreamProcessing {
+public class BusinessStreamProcessing {
 
     public final static String STATE_STORE = "order-business";
     public final static String CUSTOMER_STORE = "customer-product";
@@ -66,6 +66,10 @@ public class OrderStreamProcessing {
                 customerProductObj.setAddress(custAddress);
 
                 String new_key = custPhoneNum + custAddress;
+
+                // Debug
+                System.out.println("Creating a KTable entry: " + customerProductObj);
+
                 return KeyValue.pair(new_key, customerProductObj);
             }).toTable(
                     Materialized.<String, TotalOrderValueCustomer, KeyValueStore<Bytes, byte[]>>
@@ -106,15 +110,15 @@ public class OrderStreamProcessing {
     }
 
     public Serde<TotalOrderValueCustomer> totalValueProductSerde(){
-        JsonSerde<TotalOrderValueCustomer> customerProductJsonSerde = new JsonSerde<>();
+        JsonSerde<TotalOrderValueCustomer> totalOrderValueCustomerJsonSerde = new JsonSerde<>();
 
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.businessgroup.domain.TotalOrderValueCustomer");
         configProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
 
-        customerProductJsonSerde.configure(configProps, false);
+        totalOrderValueCustomerJsonSerde.configure(configProps, false);
 
-        return customerProductJsonSerde;
+        return totalOrderValueCustomerJsonSerde;
     }
 
 }

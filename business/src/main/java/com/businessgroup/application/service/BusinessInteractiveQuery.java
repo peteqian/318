@@ -3,7 +3,6 @@ package com.businessgroup.application.service;
 import com.businessgroup.domain.CustomerProduct;
 import com.businessgroup.domain.TotalOrderValueCustomer;
 import com.businessgroup.exception.ProductNotFoundException;
-import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.state.KeyValueIterator;
 import org.apache.kafka.streams.state.QueryableStoreTypes;
 import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
@@ -14,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class OrderInteractiveQuery {
+public class BusinessInteractiveQuery {
 
     private InteractiveQueryService interactiveQueryService;
 
-    public OrderInteractiveQuery(InteractiveQueryService interactiveQueryService){
+    public BusinessInteractiveQuery(InteractiveQueryService interactiveQueryService){
         this.interactiveQueryService = interactiveQueryService;
     }
 
@@ -71,21 +70,21 @@ public class OrderInteractiveQuery {
 
     private ReadOnlyKeyValueStore<String, Long> keyValueStore(){
         return this.interactiveQueryService.getQueryableStore(
-                OrderStreamProcessing.STATE_STORE,
+                BusinessStreamProcessing.STATE_STORE,
                 QueryableStoreTypes.keyValueStore()
         );
     }
 
     private ReadOnlyKeyValueStore<String, CustomerProduct> customerProduct(){
         return this.interactiveQueryService.getQueryableStore(
-                OrderStreamProcessing.CUSTOMER_STORE,
+                BusinessStreamProcessing.CUSTOMER_STORE,
                 QueryableStoreTypes.keyValueStore()
         );
     }
 
     private ReadOnlyKeyValueStore<String, TotalOrderValueCustomer> totalOrderValue(){
         return this.interactiveQueryService.getQueryableStore(
-                OrderStreamProcessing.TOTAL_VALUE_STORE,
+                BusinessStreamProcessing.TOTAL_VALUE_STORE,
                 QueryableStoreTypes.keyValueStore()
         );
     }

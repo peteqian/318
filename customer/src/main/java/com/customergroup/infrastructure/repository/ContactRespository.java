@@ -22,6 +22,14 @@ public interface ContactRespository
     )
     Boolean selectExistsEmail(String email);
 
+    @Query("" +
+            "SELECT CASE WHEN COUNT(phone) > 0 THEN " +
+            "TRUE ELSE FALSE END " +
+            "FROM Contact s " +
+            "WHERE s.phone = ?1"
+    )
+    Boolean selectExistsPhone(String phone);
+
     @Query("SELECT s FROM Contact s WHERE lower(s.phone) = ?1")
     Contact findContactByPhone(String phone);
 }

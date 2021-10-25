@@ -1,6 +1,6 @@
 package com.businessgroup.application.controller;
 
-import com.businessgroup.application.service.OrderInteractiveQuery;
+import com.businessgroup.application.service.BusinessInteractiveQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,29 +9,29 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class OrderQueryController {
+public class BusinessController {
 
     @Autowired
-    OrderInteractiveQuery orderInteractiveQuery;
+    BusinessInteractiveQuery businessInteractiveQuery;
 
     @GetMapping("/business/all")
     List<String> getAllOrderProducts(){
-        return orderInteractiveQuery.getAllProductList();
+        return businessInteractiveQuery.getAllProductList();
     }
 
     @GetMapping("/business/{productName}/quantity")
     long getProductQuantityByName(@PathVariable String productName){
-        return orderInteractiveQuery.getProductQuantity(productName);
+        return businessInteractiveQuery.getProductQuantity(productName);
     }
 
     @GetMapping("/business/{customerPhone}/product")
     List<String> getAllProductByCustomerPhone(@PathVariable String customerPhone){
-        return orderInteractiveQuery.getAllProductsByCustomerID(customerPhone);
+        return businessInteractiveQuery.getAllProductsByCustomerID(customerPhone);
     }
 
-    @GetMapping("/business/{customerPhone}/total_price")
+    @GetMapping("/business/{customerPhone}/totalPrice")
     Double getTotalOrderValueByCustomerPhone(@PathVariable String customerPhone){
-        return orderInteractiveQuery.getTotalOrderValueByCustomerID(customerPhone);
+        return businessInteractiveQuery.getTotalOrderValueByCustomerID(customerPhone);
     }
 
 }
