@@ -5,6 +5,8 @@ public class CustomerProduct {
     private String product;
     private String phone;
     private String address;
+    private double totalPrice;
+    private Long quantity;
 
     public CustomerProduct() {}
 
@@ -32,12 +34,30 @@ public class CustomerProduct {
         this.address = address;
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "CustomerProduct{" +
                 "product='" + product + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", quantity=" + quantity +
                 '}';
     }
 }

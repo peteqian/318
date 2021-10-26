@@ -122,23 +122,22 @@ public class OrderApplication {
 						log.info(e.toString());
 					}
 
-					// Get object and map accordingly to OrdersEvent class
-
+					// Get the recently made order
 					String url = PREFIX_ORDER_URL + "/" + counter;
-					System.out.println("Le url is: " + url);
 
+					// Place Order into an object
 					Orders ordersEvent = restTemplate.getForObject(url,
 							Orders.class);
 
-					System.out.println("Order made: " + ordersEvent.toString());
 					assert ordersEvent != null;
+
 					log.info(ordersEvent.toString());
 
 					streamBridge.send("order-outbound", ordersEvent);
 					counter.getAndIncrement();
 
 					// Set to 10s just because I didn't want to spam server
-					Thread.sleep(10000);
+					Thread.sleep(2000);
 				}
 
 			} catch(InterruptedException ignored){}

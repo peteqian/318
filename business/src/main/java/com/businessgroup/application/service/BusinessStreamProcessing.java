@@ -35,14 +35,19 @@ public class BusinessStreamProcessing {
         return inputStream -> {
 
             inputStream.map((k, v) -> {
+                Long orderId = v.getId();
                 String productName = v.getProductName();
                 String custPhoneNum = v.getCusPhoneNum();
                 String custAddress = v.getCusAddress();
+                Long orderQuantity = v.getQuantity();
+                double orderPrice = v.getTotalPrice();
 
                 CustomerProduct customerProductObj = new CustomerProduct();
                 customerProductObj.setProduct(productName);
                 customerProductObj.setPhone(custPhoneNum);
                 customerProductObj.setAddress(custAddress);
+                customerProductObj.setQuantity(orderQuantity);
+                customerProductObj.setTotalPrice(orderPrice);
 
                 String new_key = custPhoneNum + custAddress + productName;
                 return KeyValue.pair(new_key, customerProductObj);
@@ -57,15 +62,17 @@ public class BusinessStreamProcessing {
             inputStream.map((k, v) -> {
 
                 double totalPrice = v.getTotalPrice();
+                Long orderId = v.getId();
                 String custPhoneNum = v.getCusPhoneNum();
                 String custAddress = v.getCusAddress();
 
                 TotalOrderValueCustomer customerProductObj = new TotalOrderValueCustomer();
+                customerProductObj.setId(orderId);
                 customerProductObj.setTotalPrice(totalPrice);
                 customerProductObj.setPhone(custPhoneNum);
                 customerProductObj.setAddress(custAddress);
 
-                String new_key = custPhoneNum + custAddress;
+                String new_key = orderId + custPhoneNum + custAddress;
 
                 // Debug
                 System.out.println("Creating a KTable entry: " + customerProductObj);

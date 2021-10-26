@@ -2,9 +2,18 @@ package com.businessgroup.domain;
 
 public class TotalOrderValueCustomer {
 
+    private Long orderId;
     private String phone;
     private String address;
     private double totalPrice;
+
+    public Long getId() {
+        return orderId;
+    }
+
+    public void setId(Long id) {
+        this.orderId= id;
+    }
 
     public TotalOrderValueCustomer(){}
 
@@ -35,7 +44,8 @@ public class TotalOrderValueCustomer {
     @Override
     public String toString() {
         return "TotalOrderValueCustomer{" +
-                "phone='" + phone + '\'' +
+                "orderId =" + orderId +
+                ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", totalPrice=" + totalPrice +
                 '}';

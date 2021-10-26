@@ -2,6 +2,7 @@ package com.businessgroup.application.service;
 
 import com.businessgroup.domain.CustomerProduct;
 import com.businessgroup.domain.TotalOrderValueCustomer;
+import com.businessgroup.exception.CustomerNotFoundException;
 import com.businessgroup.exception.ProductNotFoundException;
 import org.apache.kafka.streams.state.KeyValueIterator;
 import org.apache.kafka.streams.state.QueryableStoreTypes;
@@ -43,29 +44,87 @@ public class BusinessInteractiveQuery {
     public List<String> getAllProductsByCustomerID(String customerPhone){
         List<String> productList = new ArrayList<>();
         KeyValueIterator<String, CustomerProduct> all = customerProduct().all();
+        int customerCounter = 0;
         while(all.hasNext()){
             CustomerProduct customerProduct = all.next().value;
             String productName = customerProduct.getProduct();
             String custPhone = customerProduct.getPhone();
             if(custPhone.equals(customerPhone)){
+                customerCounter = customerCounter + 1;
                 productList.add(productName);
             }
         }
+
+        if(customerCounter == 0){
+            throw new CustomerNotFoundException("Cannot found the customer with " + customerPhone);
+        }
+
         return productList;
     }
 
     public double getTotalOrderValueByCustomerID(String customerPhone){
+
         double totalOrderValue = 0;
+        int customerCounter = 0;
         KeyValueIterator<String, TotalOrderValueCustomer> all = totalOrderValue().all();
+
         while(all.hasNext()){
             TotalOrderValueCustomer customerProduct = all.next().value;
             String custPhone = customerProduct.getPhone();
-            double price = customerProduct.getTotalPrice();
-            if(custPhone.equals(customerPhone)){
-                totalOrderValue += price;
+            if(customerPhone.equals(custPhone)){
+                double price = customerProduct.getTotalPrice();
+                System.out.println("Retrieving the price from the KTable: " + price);
+                totalOrderValue = totalOrderValue + price;
+                customerCounter = customerCounter + 1;
+
             }
         }
+
         return totalOrderValue;
+    }
+
+    public List<CustomerProduct> getCustomerDebugFunction(String customerPhone){
+
+        List<CustomerProduct> customerList = new ArrayList<>();
+        KeyValueIterator<String, CustomerProduct> all = customerProduct().all();
+        int customerCounter = 0;
+
+        while(all.hasNext()){
+            CustomerProduct customer = all.next().value;
+            String custPhone = customer.getPhone();
+            if(custPhone.equals(customerPhone)){
+                customerList.add(customer);
+                customerCounter++;
+            }
+        }
+
+        if(customerCounter == 0){
+            throw new CustomerNotFoundException("Cannot found the customer with " + customerPhone);
+        }
+
+        return customerList;
+    }
+
+    public List<TotalOrderValueCustomer> getTotalOrderDebugFunction(String customerPhone){
+
+        List<TotalOrderValueCustomer> customerList = new ArrayList<>();
+        KeyValueIterator<String, TotalOrderValueCustomer> all = totalOrderValue().all();
+        int customerCounter = 0;
+
+        while(all.hasNext()){
+            TotalOrderValueCustomer customer = all.next().value;
+            String custPhone = customer.getPhone();
+            if(custPhone.equals(customerPhone)){
+                customerList.add(customer);
+                customerCounter++;
+            }
+        }
+
+        if(customerCounter == 0){
+            throw new CustomerNotFoundException("Cannot found the customer with " + customerPhone);
+        }
+
+        return customerList;
     }
 
     private ReadOnlyKeyValueStore<String, Long> keyValueStore(){

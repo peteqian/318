@@ -31,7 +31,7 @@ public class ProductConfiguration {
             Product productThree = new Product(
                     "Hardware",
                     "Nvidia RTX 3080",
-                    2199.99,
+                    25.0,
                     1000,
                     "PLE Computers"
             );
@@ -39,7 +39,7 @@ public class ProductConfiguration {
             Product productFour = new Product(
                     "Hardware",
                     "AMD Ryzen R5 5600X",
-                    469.00,
+                    50.0,
                     1000,
                     "PC Case Gear"
             );
@@ -47,7 +47,7 @@ public class ProductConfiguration {
             Product productFive = new Product(
                     "Software",
                     "Windows 2000 - Home",
-                    1.00,
+                    1.01,
                     10000000,
                     "Microsoft"
             );
