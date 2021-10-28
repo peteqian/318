@@ -17,6 +17,7 @@ public class Contact {
     )
     private Long id;
     private String name;
+    @Column(unique = true)
     private String phone;
     private String email;
     private String position;

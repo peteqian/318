@@ -103,13 +103,9 @@ public class OrderService {
 
             orderRepository.save(order);
 
-            System.out.println("Saving the order: " + order);
-
             OrdersEvent ordersEvent = new OrdersEvent(order);
-            // is it possible the ordersEvent is not attaching anything?
-            System.out.println("Saving the ordersEvent in OrdersService: " + ordersEvent);
-            System.out.println("Publish the event");
             publisher.publishEvent(ordersEvent);
+
         }
         catch (Exception e){
             System.out.println("Message: " + e.getMessage());
