@@ -33,10 +33,13 @@ public class BusinessInteractiveQuery {
     }
 
     public long getProductQuantity(String productName){
-        if (keyValueStore().get(productName) != null){
-            return keyValueStore().get(productName);
+
+        String newName = productName.replaceAll("\\+", " ");
+
+        if (keyValueStore().get(newName) != null){
+            return keyValueStore().get(newName);
         } else {
-            throw new ProductNotFoundException("The product '" + productName +
+            throw new ProductNotFoundException("The product '" + newName +
                     "' does not exist.");
         }
     }
