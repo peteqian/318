@@ -59,24 +59,25 @@ public class ProductService {
 
     @Transactional
     public void updateProduct(String productName,
-                              String productCategory,
-                              double price,
-                              long stockQuantity){
-        Product product = productRepository.findProductByName(productName)
+                              Product product){
+
+        String newName = productName.replaceAll("\\+", " ");
+
+        Product productRepos = productRepository.findProductByName(newName)
                 .orElseThrow( ()-> new ProductFailedException("Product " + productName + " cannot be found."));
 
-        if (productCategory != null && productCategory.length() > 0){
-            product.setProductCategory(productCategory);
+        if (product.getProductCategory() != null && product.getProductCategory().length() > 0){
+            productRepos.setProductCategory(product.getProductCategory());
         }
 
-        if(price >= 0.0){
-            product.setPrice(price);
+        if(product.getPrice() >= 0.0){
+            productRepos.setPrice(product.getPrice());
         } else {
             throw new ProductFailedException("Price cannot be below 0.0");
         }
 
-        if(stockQuantity >= 0){
-            product.setStockQuantity(stockQuantity);
+        if(product.getStockQuantity() >= 0){
+            productRepos.setStockQuantity(product.getStockQuantity());
         } else {
             throw new ProductFailedException("Stock Quantity cannot be below 0");
         }

@@ -2,7 +2,7 @@ package com.ordergroup.application.service;
 
 import com.ordergroup.domain.Orders;
 import com.ordergroup.domain.OrdersEvent;
-import com.ordergroup.infrastructure.OrdersEventRepository;
+import com.ordergroup.infrastructure.repository.OrdersEventRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -30,18 +30,26 @@ public class OrdersEventService {
     @EventListener
     public void handle(OrdersEvent ordersEvent){
         try {
+            // save the orders Event
+            System.out.println("Handle the published Event");
             ordersEventRepository.save(ordersEvent);
 
             //need to update stock
             System.out.println("Received order event, no cap");
-            String getOrderURL = "http://localhost:8082/api/orders/" + ordersEvent.getOrderID();
+            String getOrderURL = "http://localhost:8082/api/orders/"
+                    + ordersEvent.getOrderID();
             System.out.println(getOrderURL);
 
             Orders order = restTemplate.getForObject(getOrderURL, Orders.class);
 
-            String updateStockUrl = "http://localhost:8081/product/" + order.getProductName() + "/quantity/" + order.getQuantity();
+            String updateStockUrl = "http://localhost:8081/product/"
+                    + order.getProductName()
+                    + "/quantity/"
+                    + order.getQuantity();
             System.out.println(updateStockUrl);
-            restTemplate.exchange(updateStockUrl, HttpMethod.PUT, new HttpEntity<>(order, new HttpHeaders()), Void.class);
+            restTemplate.exchange(updateStockUrl, HttpMethod.PUT,
+                    new HttpEntity<>(order, new HttpHeaders()), Void.class);
+
         } catch(Exception e) {
             System.out.println("Message: " + e.getMessage());
             throw new ResponseStatusException(

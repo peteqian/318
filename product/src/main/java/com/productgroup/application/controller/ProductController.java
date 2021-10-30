@@ -83,13 +83,11 @@ public class ProductController {
     PUT MAPPING
      */
 
-    @PutMapping("/product/{productName}")
+    @PutMapping("/product/name={productName}")
     public void updateProduct(
             @PathVariable("productName")String productName,
-            @PathVariable(required = false) String productCategory,
-            @PathVariable(required = false) double price,
-            @PathVariable(required = false) long stockQuantity){
-        productService.updateProduct(productName, productCategory, price, stockQuantity);
+            @RequestBody Product product){
+        productService.updateProduct(productName, product);
     }
 
     @PutMapping("/productDetail/{productDetailId}")

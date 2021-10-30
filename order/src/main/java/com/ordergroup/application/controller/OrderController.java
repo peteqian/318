@@ -22,29 +22,36 @@ public class OrderController {
 
 
     @Autowired
-    public OrderController(OrderService orderService, OrdersEventService ordersEventService){
+    public OrderController(OrderService orderService,
+                           OrdersEventService ordersEventService){
         this.orderService = orderService;
         this.ordersEventService = ordersEventService;
     }
 
     //Get mappings
-
     @GetMapping(path = "/orders")
     public List<Orders> getOrders() {return orderService.getOrders();}
 
     @GetMapping(path = "/orders/{orderID}")
-    public Orders getOrder(@PathVariable("orderID") long Id) { return orderService.getOrder(Id);}
+    public Orders getOrder(@PathVariable("orderID") long Id) {
+        return orderService.getOrder(Id);
+    }
 
     @GetMapping(path = "/orders/{orderID}/customer")
-    public Customer getCustomerInfo(@PathVariable("orderID") long id) {return orderService.getCustomerInfo(id);}
+    public Customer getCustomerInfo(@PathVariable("orderID") long id) {
+        return orderService.getCustomerInfo(id);
+    }
 
     @GetMapping(path = "orders/{orderID}/product")
-    public Product getProductInfo(@PathVariable("orderID")long id) {return orderService.getProductInfo(id);}
-
+    public Product getProductInfo(@PathVariable("orderID")long id) {
+        return orderService.getProductInfo(id);
+    }
 
     //Post Mapping
     @PostMapping(path = "/orders")
     public void create(@RequestBody Map<String, String> values){
-        orderService.create(Long.parseLong(values.get("custID")), values.get("productName"), Long.parseLong(values.get("quantity")));
+        orderService.create(Long.parseLong(values.get("custID")),
+                values.get("productName"),
+                Long.parseLong(values.get("quantity")));
     }
 }

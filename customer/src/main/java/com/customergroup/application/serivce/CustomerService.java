@@ -47,6 +47,30 @@ public class CustomerService  {
                 .orElseThrow(()-> new RuntimeException("Cannot find the company name: " + companyName));
     }
 
+    public Map<String, String> getCustomerByPhone(String phone){
+        Contact contact =
+                contactRespository.findContactByPhone(phone);
+        Customer customer =
+                customerRespository.findById(contact.getCustomer().getId())
+                .orElseThrow(()-> new RuntimeException("Cannot find a company" +
+                        " with the id: " + contact.getCustomer().getId()));
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("phone", contact.getPhone());
+        map.put("address", customer.getAddress());
+        return map;
+    }
+
+    public Contact getContactByCustomerId(long customerId){
+        Customer customer = customerRespository.findById(customerId)
+                .orElseThrow(()-> new RuntimeException("Cannot find a company" +
+                        " with the id: " + customerId));
+
+        Contact contact = contactRespository.findById(customer.getContact().getId())
+                .orElseThrow(()-> new RuntimeException("Cannot find a company" +
+                        " with the id: " + customer.getContact().getId()));
+        return contact;
+    }
+
     public void addCustomer(Customer customer){
         boolean customerByCompanyName
                 = customerRespository.selectExistingCompany(customer.getCompanyName());
