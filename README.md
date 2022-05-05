@@ -31,9 +31,31 @@ Explicit build support is provided for the following build tools:
 | Maven      | 3.5+                  |
 | Gardle     | 6.8.x, 6.9.x, and 7.x |
 
-## Kafka
+#### Kafka
 
+Kafka is required as host as a local server. This can be found here [Apache Downloads](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.1.0/kafka_2.12-3.1.0.tgz)
 
+#### IDE with Maven Support
+
+Recommended: IntelliJ Community Edition
+
+## Installation
+
+This installation presumes you know how to setup Kafka.
+
+1. `git clone https://github.com/peteqian/Springboot-Application.git`
+
+2. Import maven projects from your IDE
+
+3. Download maven sources
+
+## Usage
+
+1. Run kafka server
+
+2. Build the main file located in the `src\main\java` for each microservice
+
+3. Run each main file
 
 ## Appendix
 
